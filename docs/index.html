@@ -263,7 +263,7 @@
                     throw new Error(`Failed to start tests: ${response.status}`);
                 }
 
-                output.innerHTML += `\nTests started successfully! Waiting for results...\n`;
+                output.innerHTML += `\nTests started successfully! Waiting for results...\n\n`;
 
                 // Ждем немного, чтобы workflow успел начаться
                 await new Promise(resolve => setTimeout(resolve, 2000));
@@ -282,10 +282,16 @@
                 const runsData = await runsResponse.json();
                 const runId = runsData.workflow_runs[0].id;
 
+                // Создаем элементы для статуса и ссылки
+                const statusElement = document.createElement('div');
+                const linkElement = document.createElement('div');
+                output.appendChild(statusElement);
+                output.appendChild(linkElement);
+
                 // Периодически проверяем статус
                 const checkStatus = async () => {
                     const statusResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}`,
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/jobs`,
                         {
                             headers: {
                                 'Authorization': `token ${token}`,
@@ -294,35 +300,55 @@
                         }
                     );
                     
-                    const statusData = await statusResponse.json();
-                    output.innerHTML += `\nStatus: ${statusData.status} (${statusData.conclusion || 'in progress'})\n`;
+                    const jobsData = await statusResponse.json();
+                    const job = jobsData.jobs[0]; // Получаем первую job
 
-                    // Добавляем ссылку на GitHub Actions
-                    const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                    output.innerHTML += `\nView run details: <a href="${actionUrl}" target="_blank">Open in GitHub</a>\n`;
-
-                    // Если выполнение завершено, получаем артефакты
-                    if (statusData.status === 'completed') {
-                        const artifactsResponse = await fetch(
-                            `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
-                            {
-                                headers: {
-                                    'Authorization': `token ${token}`,
-                                    'Accept': 'application/vnd.github.v3+json'
-                                }
-                            }
-                        );
+                    if (job) {
+                        statusElement.innerHTML = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                         
-                        const artifactsData = await artifactsResponse.json();
+                        // Выводим шаги
+                        const stepsElement = document.createElement('div');
+                        stepsElement.innerHTML = '\nSteps:\n';
+                        job.steps.forEach(step => {
+                            stepsElement.innerHTML += `${step.name}: ${step.status} ${step.conclusion ? `(${step.conclusion})` : ''}\n`;
+                        });
                         
-                        if (artifactsData.artifacts.length > 0) {
-                            output.innerHTML += `\nTest reports available:\n`;
-                            for (const artifact of artifactsData.artifacts) {
-                                output.innerHTML += `- <a href="${artifact.archive_download_url}" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}')">${artifact.name}</a>\n`;
+                        // Обновляем только если изменились шаги
+                        if (statusElement.nextSibling !== stepsElement) {
+                            if (statusElement.nextSibling) {
+                                statusElement.parentNode.removeChild(statusElement.nextSibling);
                             }
+                            statusElement.parentNode.insertBefore(stepsElement, linkElement);
                         }
 
-                        return true; // Завершаем проверку
+                        const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
+                        linkElement.innerHTML = `View full logs: <a href="${actionUrl}" target="_blank">Open in GitHub</a>`;
+
+                        // Если выполнение завершено
+                        if (job.status === 'completed') {
+                            const artifactsResponse = await fetch(
+                                `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
+                                {
+                                    headers: {
+                                        'Authorization': `token ${token}`,
+                                        'Accept': 'application/vnd.github.v3+json'
+                                    }
+                                }
+                            );
+                            
+                            const artifactsData = await artifactsResponse.json();
+                            
+                            if (artifactsData.artifacts.length > 0) {
+                                const artifactsElement = document.createElement('div');
+                                artifactsElement.innerHTML = `\nTest reports available:\n`;
+                                artifactsData.artifacts.forEach(artifact => {
+                                    artifactsElement.innerHTML += `- <a href="${artifact.archive_download_url}" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}')">${artifact.name}</a>\n`;
+                                });
+                                output.appendChild(artifactsElement);
+                            }
+
+                            return true; // Завершаем проверку
+                        }
                     }
 
                     return false; // Продолжаем проверку
@@ -338,6 +364,7 @@
                     } catch (error) {
                         console.error('Error checking status:', error);
                         clearInterval(interval);
+                        statusElement.innerHTML += `\nError checking status: ${error.message}`;
                     }
                 }, 5000);
 
