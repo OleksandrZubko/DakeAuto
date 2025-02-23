@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playwright Test Runner</title>
+    <style>
+        /* ... предыдущие стили ... */
+        .github-login {
+            margin: 20px 0;
+            padding: 10px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Playwright Test Runner</h1>
+        
+        <div id="login-section">
+            <p>Please enter your GitHub token to continue:</p>
+            <input type="password" id="token-input" placeholder="GitHub Token">
+            <button onclick="saveToken()">Save Token</button>
+            <p><small>Token is stored only in your browser's local storage</small></p>
+        </div>
+
+        <div id="test-section" class="hidden">
+            <div class="env-selector">
+                <button class="env-button dev" onclick="runTests('dev')">Run DEV Tests</button>
+                <button class="env-button stage" onclick="runTests('stage')">Run STAGE Tests</button>
+                <button class="env-button prod" onclick="runTests('prod')">Run PROD Tests</button>
+            </div>
+            <button onclick="clearToken()" style="margin-top: 10px;">Clear Token</button>
+            <div id="output">Select environment to run tests...</div>
+        </div>
+    </div>
+
+    <script>
+        const REPO_OWNER = 'OleksandrZubko';
+        const REPO_NAME = 'DakeAuto';
+
+        // Проверяем токен при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('github_token');
+            if (token) {
+                showTestSection();
+            }
+        });
+
+        function saveToken() {
+            const token = document.getElementById('token-input').value;
+            if (token) {
+                localStorage.setItem('github_token', token);
+                showTestSection();
+            }
+        }
+
+        function clearToken() {
+            localStorage.removeItem('github_token');
+            hideTestSection();
+        }
+
+        function showTestSection() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('test-section').classList.remove('hidden');
+            document.getElementById('token-input').value = '';
+        }
+
+        function hideTestSection() {
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('test-section').classList.add('hidden');
+        }
+
+        async function runTests(env) {
+            const output = document.getElementById('output');
+            const token = localStorage.getItem('github_token');
+            
+            if (!token) {
+                output.innerHTML = 'Please enter GitHub token first';
+                return;
+            }
+
+            output.innerHTML = `Running tests on ${env.toUpperCase()} environment...\n`;
+            
+            try {
+                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/playwright.yml/dispatches`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        ref: 'main',
+                        inputs: {
+                            environment: env
+                        }
+                    })
+                });
+
+                if (response.ok) {
+                    output.innerHTML += `\nTests started successfully!\nCheck GitHub Actions for results: https://github.com/${REPO_OWNER}/${REPO_NAME}/actions`;
+                } else {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            } catch (error) {
+                output.innerHTML += `\nError: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html> 
