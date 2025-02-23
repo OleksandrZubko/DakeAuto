@@ -29,7 +29,10 @@ jobs:
         npx playwright install --with-deps
 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+        echo "Running tests for ${{ matrix.environment }} environment"
+        echo "Using URL: ${{ secrets[format('BASE_URL_{0}', matrix.environment)] }}"
+        npx playwright test
       env:
         BASE_URL: ${{ secrets[format('BASE_URL_{0}', matrix.environment)] }}
         LOGIN: ${{ secrets.LOGIN }}

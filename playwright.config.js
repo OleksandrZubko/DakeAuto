@@ -8,14 +8,16 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
-//   workers: process.env.CI ? 1 : undefined,
-workers: 1,
+  workers: 1,
   reporter: 'html',
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'retain-on-failure',
+    navigationTimeout: 30000,
+    actionTimeout: 15000,
+    ignoreHTTPSErrors: true
   },
   projects: [
     {
