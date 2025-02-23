@@ -3,27 +3,47 @@ import { test, expect } from '@playwright/test';
 
 // Общая функция для логина
 async function login(page) {
-  await page.goto('/');
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+  try {
+    if (!process.env.BASE_URL) {
+      throw new Error('BASE_URL environment variable is not set');
+    }
+    console.log('Using BASE_URL:', process.env.BASE_URL);
+    
+    // Используем полный URL вместо относительного пути
+    await page.goto(process.env.BASE_URL);
+    // Ждем, пока страница загрузится
+    await page.waitForLoadState('networkidle');
+    
+    await page.locator('input[name="login"]').fill(process.env.LOGIN || 'adminee');
+    await page.locator('input[name="password"]').fill(process.env.PASSWORD || '71060589ff2cf877d53abb85d4daca2f');
+    await page.locator('input[name="hash"]').fill(process.env.HASH || '71060589ff2cf877d53abb85d4daca2f');
+    
+    // Ждем, пока кнопка станет кликабельной
+    const submitButton = page.locator('button.btn.btn-primary.user-login');
+    await submitButton.waitFor({ state: 'visible' });
+    
+    // Используем Promise.all для обработки навигации
+    await Promise.all([
+      // Ждем навигацию
+      page.waitForNavigation({ waitUntil: 'networkidle' }),
+      // Кликаем по кнопке
+      submitButton.click()
+    ]);
+    
+  } catch (error) {
+    console.error('Login failed:', error);
+    throw error;
+  }
 }
 
 test('Login', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
 });
 
 test('Statistic', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка и проверка его видимости
   const title = page.locator('h3.kt-subheader__title');
 
@@ -36,10 +56,7 @@ test('Statistic', async ({ page }) => {
 
 test('Users', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Site management")');
   await page.click('#users');
@@ -56,10 +73,7 @@ test('Users', async ({ page }) => {
 
 test('Block Credentials', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Site management")');
   await page.click('#block-credentials');
@@ -76,10 +90,7 @@ test('Block Credentials', async ({ page }) => {
 
 test('Sessions', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Site management")');
   await page.click('#sessions');
@@ -96,10 +107,7 @@ test('Sessions', async ({ page }) => {
 
 test('Advertising Statistics', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Site management")');;
   await page.click('#advertising_statistics');
@@ -136,10 +144,7 @@ test('Management Payment Provider', async ({ page }) => {
 
 test('Data Statistic', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#DataStatistic');
   await page.click('#data_statistic');
@@ -156,10 +161,7 @@ test('Data Statistic', async ({ page }) => {
 
 test('Distribution Data', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#DataStatistic');;
   await page.click('#data_distribution');
@@ -176,10 +178,7 @@ test('Distribution Data', async ({ page }) => {
 
 test('Distribution', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#DataStatistic');;
   await page.click('#distribution');
@@ -196,10 +195,7 @@ test('Distribution', async ({ page }) => {
 
 test('Banners', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#displayOnCasinoPanel');
   await page.click('#banners');
@@ -216,10 +212,7 @@ test('Banners', async ({ page }) => {
 
 test('FAQ', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#displayOnCasinoPanel');
   await page.click('#faq');
@@ -236,10 +229,7 @@ test('FAQ', async ({ page }) => {
 
 test('Email Templates', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#displayOnCasinoPanel');
   await page.click('#email-template');
@@ -256,10 +246,7 @@ test('Email Templates', async ({ page }) => {
 
 test('Deposits', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Payments Panel")');;
   await page.click('#deposits');
@@ -276,10 +263,7 @@ test('Deposits', async ({ page }) => {
 
 test('Operations', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Payments Panel")');;
   await page.click('#operations');
@@ -296,10 +280,7 @@ test('Operations', async ({ page }) => {
 
 test('KYC', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Payments Panel")');;
   await page.click('#kyc');
@@ -316,10 +297,7 @@ test('KYC', async ({ page }) => {
 
 test('Withdraw', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("Payments Panel")');;
   await page.click('#withdraw');
@@ -336,10 +314,7 @@ test('Withdraw', async ({ page }) => {
 
 test('Slots', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'Game Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -357,10 +332,7 @@ test('Slots', async ({ page }) => {
 
 test('Top Games', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'Game Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -379,10 +351,7 @@ test('Top Games', async ({ page }) => {
 
 test('Put Games into Group', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'Game Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -404,10 +373,7 @@ test('Put Games into Group', async ({ page }) => {
 
 test('Put Provider into Group', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'Game Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -426,10 +392,7 @@ test('Put Provider into Group', async ({ page }) => {
 
 test('Block Slots', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'Game Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -448,10 +411,7 @@ test('Block Slots', async ({ page }) => {
 
 test('Reloads', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   const gamePanelHeader = page.locator('h4.kt-menu__section-text', { hasText: 'New Feature Panel' });
   await expect(gamePanelHeader).toBeVisible();
@@ -470,10 +430,7 @@ test('Reloads', async ({ page }) => {
 
 test('Reloads & Users', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('h4.kt-menu__section-text:has-text("New Feature Panel")');
 
@@ -491,10 +448,7 @@ test('Reloads & Users', async ({ page }) => {
 
 test('List of Questions with Answers', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#questionnariePanel');
   await page.click('#questions');
@@ -511,10 +465,7 @@ test('List of Questions with Answers', async ({ page }) => {
 
 test('List of Questionnaires', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#questionnariePanel');
   await page.click('#questionnaires');
@@ -531,10 +482,7 @@ test('List of Questionnaires', async ({ page }) => {
 
 test('List of Bonus Questionnaires', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#questionnariePanel');
   await page.click('#user_bonus_questionnaire');
@@ -548,10 +496,7 @@ test('List of Bonus Questionnaires', async ({ page }) => {
 
 test('List of Promocodes', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#promocode');
@@ -568,10 +513,7 @@ test('List of Promocodes', async ({ page }) => {
 
 test('All Bonuses', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#bonuses');
@@ -588,10 +530,7 @@ test('All Bonuses', async ({ page }) => {
 
 test('Campaign Bonuses', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#campaign-assign-bonus');
@@ -608,10 +547,7 @@ test('Campaign Bonuses', async ({ page }) => {
 
 test('Additional Bonuses', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#additional_bonuses');
@@ -624,10 +560,7 @@ test('Additional Bonuses', async ({ page }) => {
 
 test('User & Additional', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#user_additional_bonuses');
@@ -644,10 +577,7 @@ test('User & Additional', async ({ page }) => {
 
 test('List of Daily Bonus', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#daily_bonus');
@@ -664,10 +594,7 @@ test('List of Daily Bonus', async ({ page }) => {
 
 test('Managment Additional Bonus', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#bonusPanel');
   await page.click('#management_additional_bonuses');
@@ -684,10 +611,7 @@ test('Managment Additional Bonus', async ({ page }) => {
 
 test('Tech Work', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#technicalPanel');
   await page.click('#tech');
@@ -704,10 +628,7 @@ test('Tech Work', async ({ page }) => {
 
 test('Dake Mail SMTP', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#technicalPanel');
   await page.click('#mail_job_status');
@@ -724,10 +645,7 @@ test('Dake Mail SMTP', async ({ page }) => {
 
 test('Country Blocker', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#technicalPanel');
   await page.click('#block_countries');
@@ -744,10 +662,7 @@ test('Country Blocker', async ({ page }) => {
 
 test('PayPro Account', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#SettingPanel');
   await page.click('#payments_account');
@@ -764,10 +679,7 @@ test('PayPro Account', async ({ page }) => {
 
 test('PayPro Payment Systems', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#SettingPanel');
   await page.click('#payments_paymentSystems');
@@ -784,10 +696,7 @@ test('PayPro Payment Systems', async ({ page }) => {
 
 test('PayPro Payment Fields', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#SettingPanel');
   await page.click('#payments_fields');
@@ -804,10 +713,7 @@ test('PayPro Payment Fields', async ({ page }) => {
 
 test('PayPro Key Transfer', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#SettingPanel');
   await page.click('#payments_keyTransferForm');
@@ -824,10 +730,7 @@ test('PayPro Key Transfer', async ({ page }) => {
 
 test('Access', async ({ page }) => {
   await login(page);
-  await page.locator('input[name="login"]').fill('adminee');
-  await page.locator('input[name="password"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('input[name="hash"]').fill('71060589ff2cf877d53abb85d4daca2f');
-  await page.locator('button[type="submit"]').click();
+
   // Поиск заголовка
   await page.click('#panelControl');
   await page.click('#admin_panel');

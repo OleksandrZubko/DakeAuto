@@ -42,7 +42,7 @@ jobs:
         echo "Environment: ${{ github.event.inputs.environment || 'prod' }}"
         echo "BASE_URL will be: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}"
 
-    -    - name: Run Playwright tests
+    - name: Run Playwright tests
       env:
         BASE_URL: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}
         LOGIN: ${{ secrets.LOGIN }}
