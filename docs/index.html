@@ -304,54 +304,36 @@
                     const job = jobsData.jobs[0]; // Получаем первую job
 
                     if (job) {
-                        statusElement.innerHTML = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
+                        // Обновляем статус
+                        statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                         
-                        // Выводим шаги
-                        const stepsElement = document.createElement('div');
-                        stepsElement.innerHTML = '\nSteps:\n';
-                        job.steps.forEach(step => {
-                            stepsElement.innerHTML += `${step.name}: ${step.status} ${step.conclusion ? `(${step.conclusion})` : ''}\n`;
-                        });
-                        
-                        // Обновляем только если изменились шаги
-                        if (statusElement.nextSibling !== stepsElement) {
-                            if (statusElement.nextSibling) {
-                                statusElement.parentNode.removeChild(statusElement.nextSibling);
-                            }
-                            statusElement.parentNode.insertBefore(stepsElement, linkElement);
+                        // Создаем новый элемент для шагов, если его еще нет
+                        let stepsElement = document.getElementById('steps-info');
+                        if (!stepsElement) {
+                            stepsElement = document.createElement('pre');
+                            stepsElement.id = 'steps-info';
+                            output.appendChild(stepsElement);
                         }
 
+                        // Обновляем информацию о шагах
+                        let stepsText = '\nSteps:\n';
+                        job.steps.forEach(step => {
+                            stepsText += `${step.name}: ${step.status} ${step.conclusion ? `(${step.conclusion})` : ''}\n`;
+                        });
+                        stepsElement.textContent = stepsText;
+
+                        // Обновляем ссылку
                         const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                        linkElement.innerHTML = `View full logs: <a href="${actionUrl}" target="_blank">Open in GitHub</a>`;
+                        linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View full logs on GitHub</a>`;
 
                         // Если выполнение завершено
                         if (job.status === 'completed') {
-                            const artifactsResponse = await fetch(
-                                `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
-                                {
-                                    headers: {
-                                        'Authorization': `token ${token}`,
-                                        'Accept': 'application/vnd.github.v3+json'
-                                    }
-                                }
-                            );
-                            
-                            const artifactsData = await artifactsResponse.json();
-                            
-                            if (artifactsData.artifacts.length > 0) {
-                                const artifactsElement = document.createElement('div');
-                                artifactsElement.innerHTML = `\nTest reports available:\n`;
-                                artifactsData.artifacts.forEach(artifact => {
-                                    artifactsElement.innerHTML += `- <a href="${artifact.archive_download_url}" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}')">${artifact.name}</a>\n`;
-                                });
-                                output.appendChild(artifactsElement);
-                            }
-
-                            return true; // Завершаем проверку
+                            await checkArtifacts();
+                            return true;
                         }
                     }
 
-                    return false; // Продолжаем проверку
+                    return false;
                 };
 
                 // Проверяем статус каждые 5 секунд
@@ -364,13 +346,42 @@
                     } catch (error) {
                         console.error('Error checking status:', error);
                         clearInterval(interval);
-                        statusElement.innerHTML += `\nError checking status: ${error.message}`;
+                        statusElement.textContent += `\nError checking status: ${error.message}`;
                     }
                 }, 5000);
 
             } catch (error) {
                 output.innerHTML += `\nError: ${error.message}`;
                 console.error('Full error:', error);
+            }
+        }
+
+        // Выносим проверку артефактов в отдельную функцию
+        async function checkArtifacts() {
+            const artifactsResponse = await fetch(
+                `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
+                {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                }
+            );
+            
+            const artifactsData = await artifactsResponse.json();
+            
+            if (artifactsData.artifacts.length > 0) {
+                let artifactsElement = document.getElementById('artifacts-info');
+                if (!artifactsElement) {
+                    artifactsElement = document.createElement('div');
+                    artifactsElement.id = 'artifacts-info';
+                    output.appendChild(artifactsElement);
+                }
+                
+                artifactsElement.innerHTML = `\nTest reports available:\n`;
+                artifactsData.artifacts.forEach(artifact => {
+                    artifactsElement.innerHTML += `- <a href="#" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}')">${artifact.name}</a>\n`;
+                });
             }
         }
 
