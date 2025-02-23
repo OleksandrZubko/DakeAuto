@@ -4,6 +4,11 @@ import { test, expect } from '@playwright/test';
 // Общая функция для логина
 async function login(page) {
   try {
+    if (!process.env.BASE_URL) {
+      throw new Error('BASE_URL environment variable is not set');
+    }
+    console.log('Using BASE_URL:', process.env.BASE_URL);
+    
     // Используем полный URL вместо относительного пути
     await page.goto(process.env.BASE_URL);
     // Ждем, пока страница загрузится
