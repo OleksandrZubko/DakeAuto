@@ -199,6 +199,13 @@
     </div>
 
     <script>
+        // Глобальные переменные
+        let runId;
+        let token;
+        let statusElement;
+        let linkElement;
+        let output;
+
         // Проверяем токен при загрузке
         document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('github_token');
@@ -232,8 +239,8 @@
         }
 
         async function runTests(env) {
-            const output = document.getElementById('output');
-            const token = localStorage.getItem('github_token');
+            output = document.getElementById('output');
+            token = localStorage.getItem('github_token');
             
             if (!token) {
                 output.innerHTML = 'Please enter GitHub token first';
@@ -280,11 +287,11 @@
                 );
                 
                 const runsData = await runsResponse.json();
-                const runId = runsData.workflow_runs[0].id;
+                runId = runsData.workflow_runs[0].id;
 
                 // Создаем элементы для статуса и ссылки
-                const statusElement = document.createElement('div');
-                const linkElement = document.createElement('div');
+                statusElement = document.createElement('div');
+                linkElement = document.createElement('div');
                 output.appendChild(statusElement);
                 output.appendChild(linkElement);
 
