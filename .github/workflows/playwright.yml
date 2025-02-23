@@ -43,18 +43,11 @@ jobs:
         echo "BASE_URL will be: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}"
 
     - name: Run Playwright tests
-      env:
-        BASE_URL: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}
-        LOGIN: ${{ secrets.LOGIN }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        HASH: ${{ secrets.HASH }}
       run: |
-        if [ -z "$BASE_URL" ]; then
-          echo "Error: BASE_URL is not set"
-          exit 1
-        fi
-        echo "Using BASE_URL: ***"
-        npx playwright test --reporter=list
+        mkdir -p test-results
+        npx playwright test tests/example.spec.js --reporter=list | tee test-results/running-log.txt
+      env:
+        BASE_URL: ${{ github.event.inputs.environment == 'prod' && secrets.BASE_URL_PROD || github.event.inputs.environment == 'stage' && secrets.BASE_URL_STAGE || secrets.BASE_URL_DEV }}
 
     - name: Save logs
       if: always()
@@ -79,4 +72,11 @@ jobs:
         name: execution-logs
         path: logs/
         retention-days: 30
+
+    - name: Upload running log
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: running-log
+        path: test-results/running-log.txt
         

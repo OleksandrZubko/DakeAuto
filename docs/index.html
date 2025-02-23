@@ -301,38 +301,44 @@
                     );
                     
                     const jobsData = await statusResponse.json();
-                    const job = jobsData.jobs[0]; // Получаем первую job
+                    const job = jobsData.jobs[0];
 
                     if (job) {
                         // Обновляем статус
                         statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                         
-                        // Создаем новый элемент для шагов, если его еще нет
-                        let stepsElement = document.getElementById('steps-info');
-                        if (!stepsElement) {
-                            stepsElement = document.createElement('pre');
-                            stepsElement.id = 'steps-info';
-                            output.appendChild(stepsElement);
+                        // Создаем или получаем элемент для логов
+                        let logsElement = document.getElementById('test-logs');
+                        if (!logsElement) {
+                            logsElement = document.createElement('pre');
+                            logsElement.id = 'test-logs';
+                            logsElement.className = 'test-logs';
+                            output.appendChild(logsElement);
                         }
 
-                        // Обновляем информацию о шагах
-                        let stepsText = '\nSteps:\n';
-                        job.steps.forEach(step => {
-                            stepsText += `${step.name}: ${step.status} ${step.conclusion ? `(${step.conclusion})` : ''}\n`;
-                        });
-                        stepsElement.textContent = stepsText;
+                        // Получаем логи из шагов
+                        let testLogs = '';
+                        for (const step of job.steps) {
+                            if (step.name === 'Run Playwright tests') {
+                                testLogs += `\n=== Running Playwright Tests ===\n`;
+                                if (step.status === 'completed') {
+                                    testLogs += await getTestLogs();
+                                } else if (step.status === 'in_progress') {
+                                    testLogs += `\n🔄 Tests are running...\n`;
+                                }
+                            }
+                        }
+                        logsElement.textContent = testLogs;
 
                         // Обновляем ссылку
                         const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                        linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View full logs on GitHub</a>`;
+                        linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
 
-                        // Если выполнение завершено
                         if (job.status === 'completed') {
                             await checkArtifacts();
                             return true;
                         }
                     }
-
                     return false;
                 };
 
@@ -410,6 +416,40 @@
             } catch (error) {
                 console.error('Download error:', error);
                 alert('Failed to download artifact');
+            }
+        }
+
+        async function getTestLogs() {
+            try {
+                const artifactsResponse = await fetch(
+                    `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
+                    {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+                
+                const artifactsData = await artifactsResponse.json();
+                const runningLog = artifactsData.artifacts.find(a => a.name === 'running-log');
+                
+                if (runningLog) {
+                    const logResponse = await fetch(runningLog.archive_download_url, {
+                        headers: {
+                            'Authorization': `token ${token}`
+                        }
+                    });
+                    
+                    const blob = await logResponse.blob();
+                    const text = await new Response(blob).text();
+                    return text;
+                }
+                
+                return '\nLogs will be available when tests complete...\n';
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+                return '\nError fetching logs. Check GitHub Actions for details.\n';
             }
         }
     </script>
