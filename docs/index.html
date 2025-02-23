@@ -199,43 +199,62 @@
     </div>
 
     <script>
-        // Глобальные переменные
+        // Глобальные переменные и функции
         let runId;
         let token;
         let statusElement;
         let linkElement;
         let output;
 
-        // Проверяем токен при загрузке
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('github_token');
-            if (token) {
-                showTestSection();
+        async function checkStatus() {
+            const statusResponse = await fetch(
+                `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/jobs`,
+                {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                }
+            );
+            
+            const jobsData = await statusResponse.json();
+            const job = jobsData.jobs[0];
+
+            if (job) {
+                statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
+                
+                let logsElement = document.getElementById('test-logs');
+                if (!logsElement) {
+                    logsElement = document.createElement('pre');
+                    logsElement.id = 'test-logs';
+                    logsElement.className = 'test-logs';
+                    output.appendChild(logsElement);
+                }
+
+                let testLogs = '';
+                for (const step of job.steps) {
+                    if (step.name === 'Run Playwright tests') {
+                        testLogs += `\n=== Running Playwright Tests ===\n`;
+                        if (step.status === 'completed') {
+                            testLogs += await getTestLogs();
+                        } else if (step.status === 'in_progress') {
+                            testLogs += `\n🔄 Tests are running...\n`;
+                            // Добавляем вывод консольных логов из теста
+                            testLogs += step.output || '';
+                        }
+                    }
+                }
+                logsElement.textContent = testLogs;
+
+                const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
+                linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
+
+                if (job.status === 'completed') {
+                    await checkArtifacts();
+                    return true;
+                }
             }
-        });
-
-        function saveToken() {
-            const token = document.getElementById('token-input').value;
-            if (token) {
-                localStorage.setItem('github_token', token);
-                showTestSection();
-            }
-        }
-
-        function clearToken() {
-            localStorage.removeItem('github_token');
-            hideTestSection();
-        }
-
-        function showTestSection() {
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('test-section').classList.remove('hidden');
-            document.getElementById('token-input').value = '';
-        }
-
-        function hideTestSection() {
-            document.getElementById('login-section').classList.remove('hidden');
-            document.getElementById('test-section').classList.add('hidden');
+            return false;
         }
 
         async function runTests(env) {
@@ -294,60 +313,6 @@
                 linkElement = document.createElement('div');
                 output.appendChild(statusElement);
                 output.appendChild(linkElement);
-
-                // Периодически проверяем статус
-                const checkStatus = async () => {
-                    const statusResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/jobs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`,
-                                'Accept': 'application/vnd.github.v3+json'
-                            }
-                        }
-                    );
-                    
-                    const jobsData = await statusResponse.json();
-                    const job = jobsData.jobs[0];
-
-                    if (job) {
-                        // Обновляем статус
-                        statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
-                        
-                        // Создаем или получаем элемент для логов
-                        let logsElement = document.getElementById('test-logs');
-                        if (!logsElement) {
-                            logsElement = document.createElement('pre');
-                            logsElement.id = 'test-logs';
-                            logsElement.className = 'test-logs';
-                            output.appendChild(logsElement);
-                        }
-
-                        // Получаем логи из шагов
-                        let testLogs = '';
-                        for (const step of job.steps) {
-                            if (step.name === 'Run Playwright tests') {
-                                testLogs += `\n=== Running Playwright Tests ===\n`;
-                                if (step.status === 'completed') {
-                                    testLogs += await getTestLogs();
-                                } else if (step.status === 'in_progress') {
-                                    testLogs += `\n🔄 Tests are running...\n`;
-                                }
-                            }
-                        }
-                        logsElement.textContent = testLogs;
-
-                        // Обновляем ссылку
-                        const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                        linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
-
-                        if (job.status === 'completed') {
-                            await checkArtifacts();
-                            return true;
-                        }
-                    }
-                    return false;
-                };
 
                 // Проверяем статус каждые 5 секунд
                 const interval = setInterval(async () => {
@@ -458,6 +423,38 @@
                 console.error('Error fetching logs:', error);
                 return '\nError fetching logs. Check GitHub Actions for details.\n';
             }
+        }
+
+        // Проверяем токен при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('github_token');
+            if (token) {
+                showTestSection();
+            }
+        });
+
+        function saveToken() {
+            const token = document.getElementById('token-input').value;
+            if (token) {
+                localStorage.setItem('github_token', token);
+                showTestSection();
+            }
+        }
+
+        function clearToken() {
+            localStorage.removeItem('github_token');
+            hideTestSection();
+        }
+
+        function showTestSection() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('test-section').classList.remove('hidden');
+            document.getElementById('token-input').value = '';
+        }
+
+        function hideTestSection() {
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('test-section').classList.add('hidden');
         }
     </script>
 </body>
