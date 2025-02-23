@@ -1,0 +1,19 @@
+{
+  "name": "admin-panel-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.5",
+    "dotenv": "^16.4.7"
+  },
+  "main": "example.spec.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Automated tests for admin panel"
+}
