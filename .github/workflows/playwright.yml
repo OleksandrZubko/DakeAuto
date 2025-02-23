@@ -5,15 +5,24 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+        - dev
+        - stage
+        - prod
 
 jobs:
   test:
-    name: Run tests on ${{ matrix.environment }}
+    name: Run tests on ${{ github.event.inputs.environment || 'prod' }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [dev, stage, prod]
+    environment: Dake
 
     steps:
     - uses: actions/checkout@v4
@@ -30,22 +39,27 @@ jobs:
 
     - name: Debug environment variables
       run: |
-        echo "Environment: ${{ matrix.environment }}"
-        echo "BASE_URL_${{ matrix.environment }}: ${{ secrets[format('BASE_URL_{0}', matrix.environment)] }}"
-        echo "LOGIN: ${{ secrets.LOGIN }}"
+        echo "Environment: ${{ github.event.inputs.environment || 'prod' }}"
+        echo "BASE_URL will be: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}"
 
     - name: Run Playwright tests
-      run: npx playwright test
       env:
-        BASE_URL: ${{ secrets[format('BASE_URL_{0}', matrix.environment)] }}
+        BASE_URL: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}
         LOGIN: ${{ secrets.LOGIN }}
         PASSWORD: ${{ secrets.PASSWORD }}
         HASH: ${{ secrets.HASH }}
+      run: |
+        if [ -z "$BASE_URL" ]; then
+          echo "Error: BASE_URL is not set"
+          exit 1
+        fi
+        echo "Using BASE_URL: $BASE_URL"
+        npx playwright test
 
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: playwright-report-${{ matrix.environment }}
+        name: playwright-report
         path: playwright-report/
         retention-days: 30 
