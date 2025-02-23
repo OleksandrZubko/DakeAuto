@@ -243,6 +243,7 @@
             output.innerHTML = `Running tests on ${env.toUpperCase()} environment...\n`;
             
             try {
+                // Запускаем тесты
                 const response = await fetch('https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/workflows/playwright.yml/dispatches', {
                     method: 'POST',
                     headers: {
@@ -258,12 +259,99 @@
                     })
                 });
 
-                if (response.ok) {
-                    output.innerHTML += `\nTests started successfully!\nCheck GitHub Actions for results: https://github.com/OleksandrZubko/DakeAuto/actions`;
-                } else {
-                    const errorData = await response.json().catch(() => null);
-                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorData ? JSON.stringify(errorData) : 'Unknown error'}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to start tests: ${response.status}`);
                 }
+
+                output.innerHTML += `\nTests started successfully! Waiting for results...\n`;
+
+                // Ждем немного, чтобы workflow успел начаться
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Получаем список последних workflow runs
+                const runsResponse = await fetch(
+                    'https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs?per_page=1',
+                    {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+                
+                const runsData = await runsResponse.json();
+                const runId = runsData.workflow_runs[0].id;
+
+                // Периодически проверяем статус
+                const checkStatus = async () => {
+                    const statusResponse = await fetch(
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}`,
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        }
+                    );
+                    
+                    const statusData = await statusResponse.json();
+                    output.innerHTML += `\nStatus: ${statusData.status} (${statusData.conclusion || 'in progress'})\n`;
+
+                    // Получаем логи
+                    const logsResponse = await fetch(
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/logs`,
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        }
+                    );
+
+                    if (logsResponse.ok) {
+                        const logsBlob = await logsResponse.blob();
+                        const logsUrl = URL.createObjectURL(logsBlob);
+                        output.innerHTML += `\nLogs available: <a href="${logsUrl}" download="workflow-logs.zip">Download logs</a>\n`;
+                    }
+
+                    // Если выполнение завершено, получаем артефакты
+                    if (statusData.status === 'completed') {
+                        const artifactsResponse = await fetch(
+                            `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
+                            {
+                                headers: {
+                                    'Authorization': `token ${token}`,
+                                    'Accept': 'application/vnd.github.v3+json'
+                                }
+                            }
+                        );
+                        
+                        const artifactsData = await artifactsResponse.json();
+                        
+                        if (artifactsData.artifacts.length > 0) {
+                            const reportUrl = artifactsData.artifacts[0].archive_download_url;
+                            output.innerHTML += `\nTest report available: <a href="${reportUrl}" download="playwright-report.zip">Download report</a>\n`;
+                        }
+
+                        return true; // Завершаем проверку
+                    }
+
+                    return false; // Продолжаем проверку
+                };
+
+                // Проверяем статус каждые 5 секунд
+                const interval = setInterval(async () => {
+                    try {
+                        const isCompleted = await checkStatus();
+                        if (isCompleted) {
+                            clearInterval(interval);
+                        }
+                    } catch (error) {
+                        console.error('Error checking status:', error);
+                        clearInterval(interval);
+                    }
+                }, 5000);
+
             } catch (error) {
                 output.innerHTML += `\nError: ${error.message}`;
                 console.error('Full error:', error);
