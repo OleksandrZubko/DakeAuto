@@ -297,22 +297,9 @@
                     const statusData = await statusResponse.json();
                     output.innerHTML += `\nStatus: ${statusData.status} (${statusData.conclusion || 'in progress'})\n`;
 
-                    // Получаем логи
-                    const logsResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/logs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`,
-                                'Accept': 'application/vnd.github.v3+json'
-                            }
-                        }
-                    );
-
-                    if (logsResponse.ok) {
-                        const logsBlob = await logsResponse.blob();
-                        const logsUrl = URL.createObjectURL(logsBlob);
-                        output.innerHTML += `\nLogs available: <a href="${logsUrl}" download="workflow-logs.zip">Download logs</a>\n`;
-                    }
+                    // Добавляем ссылку на GitHub Actions
+                    const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
+                    output.innerHTML += `\nView run details: <a href="${actionUrl}" target="_blank">Open in GitHub</a>\n`;
 
                     // Если выполнение завершено, получаем артефакты
                     if (statusData.status === 'completed') {
@@ -329,8 +316,10 @@
                         const artifactsData = await artifactsResponse.json();
                         
                         if (artifactsData.artifacts.length > 0) {
-                            const reportUrl = artifactsData.artifacts[0].archive_download_url;
-                            output.innerHTML += `\nTest report available: <a href="${reportUrl}" download="playwright-report.zip">Download report</a>\n`;
+                            output.innerHTML += `\nTest reports available:\n`;
+                            for (const artifact of artifactsData.artifacts) {
+                                output.innerHTML += `- <a href="${artifact.archive_download_url}" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}')">${artifact.name}</a>\n`;
+                            }
                         }
 
                         return true; // Завершаем проверку
@@ -355,6 +344,34 @@
             } catch (error) {
                 output.innerHTML += `\nError: ${error.message}`;
                 console.error('Full error:', error);
+            }
+        }
+
+        // Функция для скачивания артефактов
+        async function downloadArtifact(event, url, token) {
+            event.preventDefault();
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) throw new Error('Failed to download artifact');
+                
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = 'playwright-report.zip';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Failed to download artifact');
             }
         }
     </script>
