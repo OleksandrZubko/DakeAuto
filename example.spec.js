@@ -4,7 +4,8 @@ import { test, expect } from '@playwright/test';
 // Общая функция для логина
 async function login(page) {
   try {
-    await page.goto('/');
+    // Используем полный URL вместо относительного пути
+    await page.goto(process.env.BASE_URL);
     // Ждем, пока страница загрузится
     await page.waitForLoadState('networkidle');
     
