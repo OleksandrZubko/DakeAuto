@@ -425,6 +425,80 @@
             50% { opacity: 0.7; }
             100% { opacity: 1; }
         }
+
+        .test-suite {
+            margin-left: 24px;
+            padding: 12px;
+            background: #1c2128;
+            border-radius: 6px;
+            border-left: 2px solid #30363d;
+        }
+
+        .test-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 8px;
+        }
+
+        .test-icon {
+            font-size: 18px;
+        }
+
+        .test-title {
+            font-weight: 500;
+            color: #c9d1d9;
+        }
+
+        .test-cases {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .test-case {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            background: #161b22;
+            transition: background-color 0.2s;
+        }
+
+        .test-case:hover {
+            background: #1c2128;
+        }
+
+        .test-case.success .test-case-icon {
+            color: #3fb950;
+        }
+
+        .test-case.error .test-case-icon {
+            color: #f85149;
+        }
+
+        .test-case.running .test-case-icon {
+            color: #58a6ff;
+            animation: spin 2s linear infinite;
+        }
+
+        .test-case-name {
+            flex-grow: 1;
+            font-family: 'Consolas', monospace;
+        }
+
+        .test-case-duration {
+            color: #8b949e;
+            font-size: 12px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -484,8 +558,9 @@
                         output.appendChild(logsElement);
                     }
 
-                    // Форматируем шаги выполнения
                     let formattedLogs = '<div class="test-steps">';
+                    
+                    // Добавляем шаги
                     for (const step of job.steps) {
                         const status = step.conclusion || step.status;
                         const icon = getStepIcon(status);
@@ -496,19 +571,40 @@
                                 <span class="step-icon">${icon}</span>
                                 <span class="step-name">${step.name}</span>
                                 <span class="step-status">${status}</span>
-                                ${step.completed_at ? `<span class="step-time">(${step.completed_at})</span>` : ''}
                             </div>
                         `;
 
-                        // Если это шаг с тестами и он выполняется или завершен
-                        if (step.name === 'Run Playwright tests' && (status === 'in_progress' || status === 'completed')) {
-                            formattedLogs += `<div class="test-details">`;
-                            // Добавляем информацию о тестах
+                        // Если это шаг с тестами
+                        if (step.name === 'Run Playwright tests') {
                             formattedLogs += `
-                                <div class="test-line info">🎭 Running Playwright Tests...</div>
-                                <div class="test-line">📁 tests/example.spec.js</div>
+                                <div class="test-details">
+                                    <div class="test-suite">
+                                        <div class="test-header">
+                                            <span class="test-icon">🎭</span>
+                                            <span class="test-title">Running tests/example.spec.js</span>
+                                        </div>
+                                        
+                                        <div class="test-cases">
+                                            <div class="test-case ${getStatusClass(status)}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Login</span>
+                                                <span class="test-case-duration">(4.7s)</span>
+                                            </div>
+                                            <div class="test-case ${getStatusClass(status)}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Statistic</span>
+                                                <span class="test-case-duration">(3.9s)</span>
+                                            </div>
+                                            <div class="test-case ${getStatusClass(status)}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Users</span>
+                                                <span class="test-case-duration">(4.4s)</span>
+                                            </div>
+                                            <!-- Добавьте остальные тесты здесь -->
+                                        </div>
+                                    </div>
+                                </div>
                             `;
-                            formattedLogs += `</div>`;
                         }
                     }
                     formattedLogs += '</div>';
