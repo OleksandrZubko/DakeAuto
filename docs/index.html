@@ -294,6 +294,50 @@
         .test-logs::-webkit-scrollbar-thumb:hover {
             background: #424a53;
         }
+
+        .test-reports {
+            margin-top: 20px;
+            padding: 16px;
+            background: #161b22;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+
+        .test-reports h3 {
+            margin: 0 0 16px 0;
+            color: #c9d1d9;
+            font-size: 16px;
+        }
+
+        .download-report {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #238636;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .download-report:hover {
+            background: #2ea043;
+        }
+
+        .download-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .download-report:active {
+            background: #238636;
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body>
@@ -398,7 +442,47 @@
                     const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
                     linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
 
-                    return job.status === 'completed';
+                    if (job.status === 'completed') {
+                        // Получаем артефакты
+                        const artifactsResponse = await fetch(
+                            `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
+                            {
+                                headers: {
+                                    'Authorization': `token ${token}`,
+                                    'Accept': 'application/vnd.github.v3+json'
+                                }
+                            }
+                        );
+                        
+                        const artifactsData = await artifactsResponse.json();
+                        
+                        // Создаем секцию для отчетов
+                        let reportsElement = document.getElementById('test-reports');
+                        if (!reportsElement) {
+                            reportsElement = document.createElement('div');
+                            reportsElement.id = 'test-reports';
+                            reportsElement.className = 'test-reports';
+                            output.appendChild(reportsElement);
+                        }
+
+                        // Формируем HTML для отчетов
+                        let reportsHtml = '<h3>Test Reports:</h3>';
+                        for (const artifact of artifactsData.artifacts) {
+                            if (artifact.name === 'playwright-report') {
+                                reportsHtml += `
+                                    <button class="download-report" onclick="downloadArtifact('${artifact.archive_download_url}', '${token}', 'playwright-report.zip')">
+                                        <svg class="download-icon" viewBox="0 0 16 16">
+                                            <path d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"/>
+                                        </svg>
+                                        Download Playwright Report
+                                    </button>`;
+                            }
+                        }
+                        reportsElement.innerHTML = reportsHtml;
+
+                        return true;
+                    }
+                    return false;
                 }
                 return false;
             } catch (error) {
@@ -539,14 +623,12 @@
             }
         }
 
-        // Функция для скачивания артефактов
-        async function downloadArtifact(event, url, token, filename) {
-            event.preventDefault();
+        // Функция для скачивания артефакта
+        async function downloadArtifact(url, token, filename) {
             try {
                 const response = await fetch(url, {
                     headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
+                        'Authorization': `token ${token}`
                     }
                 });
                 
@@ -563,7 +645,7 @@
                 window.URL.revokeObjectURL(downloadUrl);
             } catch (error) {
                 console.error('Download error:', error);
-                alert('Failed to download artifact');
+                alert('Failed to download report');
             }
         }
 
