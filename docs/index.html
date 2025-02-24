@@ -550,17 +550,18 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем логи
-                    const logsResponse = await fetch(job.url, {
-                        headers: {
-                            'Authorization': `token ${token}`,
-                            'Accept': 'application/vnd.github.v3+json'
+                    // Получаем сырые логи
+                    const logsResponse = await fetch(
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`
+                            }
                         }
-                    });
+                    );
                     
                     if (logsResponse.ok) {
-                        const jobDetails = await logsResponse.json();
-                        const logs = jobDetails.steps.find(s => s.name === 'Run Playwright tests')?.output || '';
+                        const logs = await logsResponse.text();
                         
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -598,27 +599,34 @@
                                             </div>
                                             <div class="test-cases">`;
 
-                                // Разбираем вывод тестов
-                                const testLines = logs.split('\n');
-                                for (const line of testLines) {
-                                    if (line.includes('Running')) {
-                                        formattedLogs += `
-                                            <div class="test-case running">
-                                                <span class="test-case-icon">⚡</span>
-                                                <span class="test-case-name">${line}</span>
-                                            </div>`;
-                                    } else if (line.includes('✓')) {
-                                        formattedLogs += `
-                                            <div class="test-case success">
-                                                <span class="test-case-icon">✓</span>
-                                                <span class="test-case-name">${line}</span>
-                                            </div>`;
-                                    } else if (line.includes('✘')) {
-                                        formattedLogs += `
-                                            <div class="test-case error">
-                                                <span class="test-case-icon">✘</span>
-                                                <span class="test-case-name">${line}</span>
-                                            </div>`;
+                                // Ищем результаты тестов в логах
+                                const lines = logs.split('\n');
+                                let isInTestSection = false;
+
+                                for (const line of lines) {
+                                    // Начало секции тестов
+                                    if (line.includes('Running tests/example.spec.js')) {
+                                        isInTestSection = true;
+                                        continue;
+                                    }
+
+                                    // Конец секции тестов
+                                    if (isInTestSection && line.includes('Upload artifact')) {
+                                        isInTestSection = false;
+                                        break;
+                                    }
+
+                                    // Вывод результатов тестов
+                                    if (isInTestSection) {
+                                        const trimmedLine = line.trim();
+                                        if (trimmedLine.startsWith('✓') || trimmedLine.startsWith('×')) {
+                                            const isSuccess = trimmedLine.startsWith('✓');
+                                            formattedLogs += `
+                                                <div class="test-case ${isSuccess ? 'success' : 'error'}">
+                                                    <span class="test-case-icon">${isSuccess ? '✓' : '×'}</span>
+                                                    <span class="test-case-name">${trimmedLine.substring(2)}</span>
+                                                </div>`;
+                                        }
                                     }
                                 }
 
