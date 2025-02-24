@@ -338,6 +338,22 @@
             background: #238636;
             transform: translateY(1px);
         }
+
+        .test-line.path {
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .test-line.running {
+            color: #58a6ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -389,7 +405,6 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем логи напрямую из job
                     const logsResponse = await fetch(
                         `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
                         {
@@ -410,30 +425,56 @@
                             output.appendChild(logsElement);
                         }
 
-                        // Форматируем логи для лучшей читаемости
-                        const formattedLogs = logs
-                            .split('\n')
+                        // Фильтруем и форматируем только важные логи
+                        const relevantLines = logs.split('\n').filter(line => {
+                            return line.includes('Running Playwright tests') ||
+                                   line.includes('Using BASE_URL:') ||
+                                   line.includes('[chromium]') ||
+                                   line.includes('Error:') ||
+                                   line.includes('✓') ||
+                                   line.includes('×') ||
+                                   line.includes('tests/example.spec.js:') ||
+                                   line.includes('Test execution log:');
+                        });
+
+                        const formattedLogs = relevantLines
                             .map(line => {
-                                if (line.includes('Using BASE_URL:')) {
+                                // Playwright запуск теста
+                                if (line.includes('Running Playwright tests')) {
+                                    return `<div class="test-line info">🎭 Starting Playwright Tests...</div>`;
+                                }
+                                // BASE_URL информация
+                                else if (line.includes('Using BASE_URL:')) {
                                     return `<div class="test-line info">🔑 ${line.trim()}</div>`;
-                                } else if (line.includes('[chromium]') && line.includes('✓')) {
-                                    return `<div class="test-line success">✓ ${line.split('[chromium]')[1].trim()}</div>`;
-                                } else if (line.includes('Error:') || line.includes('×')) {
+                                }
+                                // Успешный тест
+                                else if (line.includes('✓') || (line.includes('[chromium]') && !line.includes('Error'))) {
+                                    const testName = line.includes('[chromium]') 
+                                        ? line.split('[chromium]')[1].trim()
+                                        : line.trim();
+                                    return `<div class="test-line success">✓ ${testName}</div>`;
+                                }
+                                // Ошибка
+                                else if (line.includes('Error:') || line.includes('×')) {
                                     return `<div class="test-line error">❌ ${line.trim()}</div>`;
-                                } else if (line.includes('Running')) {
-                                    return `<div class="test-line running">🔄 ${line.trim()}</div>`;
-                                } else if (line.trim()) {
+                                }
+                                // Путь к тесту
+                                else if (line.includes('tests/example.spec.js:')) {
+                                    return `<div class="test-line path">📁 ${line.trim()}</div>`;
+                                }
+                                // Остальные важные логи
+                                else if (line.trim()) {
                                     return `<div class="test-line">${line.trim()}</div>`;
                                 }
                                 return '';
                             })
+                            .filter(line => line) // Убираем пустые строки
                             .join('');
 
                         logsElement.innerHTML = formattedLogs;
                         logsElement.scrollTop = logsElement.scrollHeight;
                     }
 
-                    // Если тесты завершены, показываем ссылку на отчет
                     if (job.status === 'completed') {
                         await checkArtifacts();
                         return true;
