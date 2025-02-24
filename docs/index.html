@@ -354,6 +354,77 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
+
+        .test-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .test-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background: #161b22;
+            border: 1px solid #30363d;
+        }
+
+        .test-step.success {
+            border-left: 4px solid #3fb950;
+        }
+
+        .test-step.error {
+            border-left: 4px solid #f85149;
+        }
+
+        .test-step.warning {
+            border-left: 4px solid #d29922;
+        }
+
+        .test-step.running {
+            border-left: 4px solid #58a6ff;
+            animation: pulse 2s infinite;
+        }
+
+        .test-step.skipped {
+            border-left: 4px solid #8b949e;
+        }
+
+        .step-icon {
+            font-size: 16px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .step-name {
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        .step-status {
+            color: #8b949e;
+            font-size: 12px;
+        }
+
+        .step-time {
+            color: #8b949e;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .test-details {
+            margin-left: 24px;
+            padding: 8px;
+            border-left: 2px solid #30363d;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -405,75 +476,45 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    const logsResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`
-                            }
-                        }
-                    );
-                    
-                    if (logsResponse.ok) {
-                        const logs = await logsResponse.text();
-                        
-                        let logsElement = document.getElementById('test-logs');
-                        if (!logsElement) {
-                            logsElement = document.createElement('pre');
-                            logsElement.id = 'test-logs';
-                            logsElement.className = 'test-logs';
-                            output.appendChild(logsElement);
-                        }
-
-                        // Фильтруем и форматируем только важные логи
-                        const relevantLines = logs.split('\n').filter(line => {
-                            return line.includes('Running Playwright tests') ||
-                                   line.includes('Using BASE_URL:') ||
-                                   line.includes('[chromium]') ||
-                                   line.includes('Error:') ||
-                                   line.includes('✓') ||
-                                   line.includes('×') ||
-                                   line.includes('tests/example.spec.js:') ||
-                                   line.includes('Test execution log:');
-                        });
-
-                        const formattedLogs = relevantLines
-                            .map(line => {
-                                // Playwright запуск теста
-                                if (line.includes('Running Playwright tests')) {
-                                    return `<div class="test-line info">🎭 Starting Playwright Tests...</div>`;
-                                }
-                                // BASE_URL информация
-                                else if (line.includes('Using BASE_URL:')) {
-                                    return `<div class="test-line info">🔑 ${line.trim()}</div>`;
-                                }
-                                // Успешный тест
-                                else if (line.includes('✓') || (line.includes('[chromium]') && !line.includes('Error'))) {
-                                    const testName = line.includes('[chromium]') 
-                                        ? line.split('[chromium]')[1].trim()
-                                        : line.trim();
-                                    return `<div class="test-line success">✓ ${testName}</div>`;
-                                }
-                                // Ошибка
-                                else if (line.includes('Error:') || line.includes('×')) {
-                                    return `<div class="test-line error">❌ ${line.trim()}</div>`;
-                                }
-                                // Путь к тесту
-                                else if (line.includes('tests/example.spec.js:')) {
-                                    return `<div class="test-line path">📁 ${line.trim()}</div>`;
-                                }
-                                // Остальные важные логи
-                                else if (line.trim()) {
-                                    return `<div class="test-line">${line.trim()}</div>`;
-                                }
-                                return '';
-                            })
-                            .filter(line => line) // Убираем пустые строки
-                            .join('');
-
-                        logsElement.innerHTML = formattedLogs;
-                        logsElement.scrollTop = logsElement.scrollHeight;
+                    let logsElement = document.getElementById('test-logs');
+                    if (!logsElement) {
+                        logsElement = document.createElement('pre');
+                        logsElement.id = 'test-logs';
+                        logsElement.className = 'test-logs';
+                        output.appendChild(logsElement);
                     }
+
+                    // Форматируем шаги выполнения
+                    let formattedLogs = '<div class="test-steps">';
+                    for (const step of job.steps) {
+                        const status = step.conclusion || step.status;
+                        const icon = getStepIcon(status);
+                        const statusClass = getStatusClass(status);
+                        
+                        formattedLogs += `
+                            <div class="test-step ${statusClass}">
+                                <span class="step-icon">${icon}</span>
+                                <span class="step-name">${step.name}</span>
+                                <span class="step-status">${status}</span>
+                                ${step.completed_at ? `<span class="step-time">(${step.completed_at})</span>` : ''}
+                            </div>
+                        `;
+
+                        // Если это шаг с тестами и он выполняется или завершен
+                        if (step.name === 'Run Playwright tests' && (status === 'in_progress' || status === 'completed')) {
+                            formattedLogs += `<div class="test-details">`;
+                            // Добавляем информацию о тестах
+                            formattedLogs += `
+                                <div class="test-line info">🎭 Running Playwright Tests...</div>
+                                <div class="test-line">📁 tests/example.spec.js</div>
+                            `;
+                            formattedLogs += `</div>`;
+                        }
+                    }
+                    formattedLogs += '</div>';
+
+                    logsElement.innerHTML = formattedLogs;
+                    logsElement.scrollTop = logsElement.scrollHeight;
 
                     if (job.status === 'completed') {
                         await checkArtifacts();
@@ -484,6 +525,28 @@
             } catch (error) {
                 console.error('Error checking status:', error);
                 return false;
+            }
+        }
+
+        function getStepIcon(status) {
+            switch (status) {
+                case 'success': return '✓';
+                case 'failure': return '❌';
+                case 'cancelled': return '⚠️';
+                case 'skipped': return '⏭️';
+                case 'in_progress': return '🔄';
+                default: return '⏳';
+            }
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'success': return 'success';
+                case 'failure': return 'error';
+                case 'cancelled': return 'warning';
+                case 'skipped': return 'skipped';
+                case 'in_progress': return 'running';
+                default: return '';
             }
         }
 
