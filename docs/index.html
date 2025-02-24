@@ -389,15 +389,7 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    let logsElement = document.getElementById('test-logs');
-                    if (!logsElement) {
-                        logsElement = document.createElement('pre');
-                        logsElement.id = 'test-logs';
-                        logsElement.className = 'test-logs';
-                        output.appendChild(logsElement);
-                    }
-
-                    // Получаем логи
+                    // Получаем логи напрямую из job
                     const logsResponse = await fetch(
                         `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
                         {
@@ -406,83 +398,46 @@
                             }
                         }
                     );
-
+                    
                     if (logsResponse.ok) {
                         const logs = await logsResponse.text();
                         
-                        // Парсим и форматируем логи
-                        const formattedLogs = logs.split('\n').map(line => {
-                            // Тест пройден
-                            if (line.includes('✓') || line.includes('[chromium]')) {
-                                return `<div class="test-line success">
-                                    <span class="check">✓</span> ${line.trim()}
-                                </div>`;
-                            }
-                            // BASE_URL
-                            else if (line.includes('Using BASE_URL:')) {
-                                return `<div class="test-line info">${line.trim()}</div>`;
-                            }
-                            // Ошибки
-                            else if (line.includes('Error:') || line.includes('×')) {
-                                return `<div class="test-line error">
-                                    <span class="cross">×</span> ${line.trim()}
-                                </div>`;
-                            }
-                            // Остальные строки
-                            else if (line.trim()) {
-                                return `<div class="test-line">${line.trim()}</div>`;
-                            }
-                            return '';
-                        }).join('');
+                        let logsElement = document.getElementById('test-logs');
+                        if (!logsElement) {
+                            logsElement = document.createElement('pre');
+                            logsElement.id = 'test-logs';
+                            logsElement.className = 'test-logs';
+                            output.appendChild(logsElement);
+                        }
+
+                        // Форматируем логи для лучшей читаемости
+                        const formattedLogs = logs
+                            .split('\n')
+                            .map(line => {
+                                if (line.includes('Using BASE_URL:')) {
+                                    return `<div class="test-line info">🔑 ${line.trim()}</div>`;
+                                } else if (line.includes('[chromium]') && line.includes('✓')) {
+                                    return `<div class="test-line success">✓ ${line.split('[chromium]')[1].trim()}</div>`;
+                                } else if (line.includes('Error:') || line.includes('×')) {
+                                    return `<div class="test-line error">❌ ${line.trim()}</div>`;
+                                } else if (line.includes('Running')) {
+                                    return `<div class="test-line running">🔄 ${line.trim()}</div>`;
+                                } else if (line.trim()) {
+                                    return `<div class="test-line">${line.trim()}</div>`;
+                                }
+                                return '';
+                            })
+                            .join('');
 
                         logsElement.innerHTML = formattedLogs;
-                        logsElement.scrollTop = logsElement.scrollHeight; // Автопрокрутка вниз
+                        logsElement.scrollTop = logsElement.scrollHeight;
                     }
 
-                    const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                    linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
-
+                    // Если тесты завершены, показываем ссылку на отчет
                     if (job.status === 'completed') {
-                        // Получаем артефакты
-                        const artifactsResponse = await fetch(
-                            `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/artifacts`,
-                            {
-                                headers: {
-                                    'Authorization': `token ${token}`,
-                                    'Accept': 'application/vnd.github.v3+json'
-                                }
-                            }
-                        );
-                        
-                        const artifactsData = await artifactsResponse.json();
-                        
-                        // Создаем секцию для отчетов
-                        let reportsElement = document.getElementById('test-reports');
-                        if (!reportsElement) {
-                            reportsElement = document.createElement('div');
-                            reportsElement.id = 'test-reports';
-                            reportsElement.className = 'test-reports';
-                            output.appendChild(reportsElement);
-                        }
-
-                        // Формируем HTML для отчетов
-                        let reportsHtml = '<h3>Test Reports:</h3>';
-                        for (const artifact of artifactsData.artifacts) {
-                            if (artifact.name === 'playwright-report') {
-                                reportsHtml += `
-                                    <button class="download-report" onclick="downloadArtifact('${artifact.archive_download_url}', '${token}', 'playwright-report.zip')">
-                                        <svg class="download-icon" viewBox="0 0 16 16">
-                                            <path d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"/>
-                                        </svg>
-                                        Download Playwright Report
-                                    </button>`;
-                            }
-                        }
-                        reportsElement.innerHTML = reportsHtml;
-
+                        await checkArtifacts();
                         return true;
                     }
-                    return false;
                 }
                 return false;
             } catch (error) {
