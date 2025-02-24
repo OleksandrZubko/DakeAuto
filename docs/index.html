@@ -209,6 +209,91 @@
         .artifacts-section a:hover {
             text-decoration: underline;
         }
+
+        .test-line {
+            margin-bottom: 5px;
+        }
+
+        .test-line.success {
+            color: var(--success-color);
+        }
+
+        .test-line.info {
+            color: var(--warning-color);
+        }
+
+        .test-line.error {
+            color: var(--error-color);
+        }
+
+        .check {
+            color: var(--success-color);
+        }
+
+        .cross {
+            color: var(--error-color);
+        }
+
+        .test-logs {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin-top: 16px;
+            white-space: pre-wrap;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .test-line {
+            padding: 2px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .test-line.success {
+            color: #3fb950;
+        }
+
+        .test-line.error {
+            color: #f85149;
+        }
+
+        .test-line.info {
+            color: #58a6ff;
+        }
+
+        .check {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .cross {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Стили для скроллбара */
+        .test-logs::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .test-logs::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+
+        .test-logs::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+
+        .test-logs::-webkit-scrollbar-thumb:hover {
+            background: #424a53;
+        }
     </style>
 </head>
 <body>
@@ -243,54 +328,83 @@
         let output;
 
         async function checkStatus() {
-            const statusResponse = await fetch(
-                `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/jobs`,
-                {
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                }
-            );
-            
-            const jobsData = await statusResponse.json();
-            const job = jobsData.jobs[0];
-
-            if (job) {
-                statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
-                
-                let logsElement = document.getElementById('test-logs');
-                if (!logsElement) {
-                    logsElement = document.createElement('pre');
-                    logsElement.id = 'test-logs';
-                    logsElement.className = 'test-logs';
-                    output.appendChild(logsElement);
-                }
-
-                let testLogs = '';
-                for (const step of job.steps) {
-                    if (step.name === 'Run Playwright tests') {
-                        testLogs += `\n=== Running Playwright Tests ===\n`;
-                        if (step.status === 'completed') {
-                            testLogs += await getTestLogs();
-                        } else if (step.status === 'in_progress') {
-                            testLogs += `\n🔄 Tests are running...\n`;
-                            // Добавляем вывод консольных логов из теста
-                            testLogs += step.output || '';
+            try {
+                const jobsResponse = await fetch(
+                    `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs/${runId}/jobs`,
+                    {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
                         }
                     }
-                }
-                logsElement.textContent = testLogs;
+                );
+                
+                const jobsData = await jobsResponse.json();
+                const job = jobsData.jobs[0];
 
-                const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
-                linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
+                if (job) {
+                    statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
+                    
+                    let logsElement = document.getElementById('test-logs');
+                    if (!logsElement) {
+                        logsElement = document.createElement('pre');
+                        logsElement.id = 'test-logs';
+                        logsElement.className = 'test-logs';
+                        output.appendChild(logsElement);
+                    }
 
-                if (job.status === 'completed') {
-                    await checkArtifacts();
-                    return true;
+                    // Получаем логи
+                    const logsResponse = await fetch(
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`
+                            }
+                        }
+                    );
+
+                    if (logsResponse.ok) {
+                        const logs = await logsResponse.text();
+                        
+                        // Парсим и форматируем логи
+                        const formattedLogs = logs.split('\n').map(line => {
+                            // Тест пройден
+                            if (line.includes('✓') || line.includes('[chromium]')) {
+                                return `<div class="test-line success">
+                                    <span class="check">✓</span> ${line.trim()}
+                                </div>`;
+                            }
+                            // BASE_URL
+                            else if (line.includes('Using BASE_URL:')) {
+                                return `<div class="test-line info">${line.trim()}</div>`;
+                            }
+                            // Ошибки
+                            else if (line.includes('Error:') || line.includes('×')) {
+                                return `<div class="test-line error">
+                                    <span class="cross">×</span> ${line.trim()}
+                                </div>`;
+                            }
+                            // Остальные строки
+                            else if (line.trim()) {
+                                return `<div class="test-line">${line.trim()}</div>`;
+                            }
+                            return '';
+                        }).join('');
+
+                        logsElement.innerHTML = formattedLogs;
+                        logsElement.scrollTop = logsElement.scrollHeight; // Автопрокрутка вниз
+                    }
+
+                    const actionUrl = `https://github.com/OleksandrZubko/DakeAuto/actions/runs/${runId}`;
+                    linkElement.innerHTML = `<a href="${actionUrl}" target="_blank">View on GitHub</a>`;
+
+                    return job.status === 'completed';
                 }
+                return false;
+            } catch (error) {
+                console.error('Error checking status:', error);
+                return false;
             }
-            return false;
         }
 
         async function runTests(env) {
