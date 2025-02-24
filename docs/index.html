@@ -671,7 +671,6 @@
         }
 
         async function runTests(env) {
-            // Очищаем предыдущие результаты
             output = document.getElementById('output');
             output.innerHTML = '';
             
@@ -705,43 +704,52 @@
                     throw new Error(`Failed to start tests: ${response.status} ${response.statusText}`);
                 }
 
-                // Даем время на создание нового запуска
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                // Ждем и проверяем создание запуска
+                let run = null;
+                let attempts = 0;
+                const maxAttempts = 10;
 
-                // Получаем список запусков
-                const runsResponse = await fetch(
-                    'https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs?per_page=5',
-                    {
-                        headers: {
-                            'Authorization': `token ${token}`,
-                            'Accept': 'application/vnd.github.v3+json'
+                while (!run && attempts < maxAttempts) {
+                    await new Promise(resolve => setTimeout(resolve, 3000)); // Ждем 3 секунды между попытками
+
+                    const runsResponse = await fetch(
+                        'https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs?per_page=10',
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
                         }
+                    );
+                    
+                    if (!runsResponse.ok) {
+                        throw new Error(`Failed to get runs: ${runsResponse.status}`);
                     }
-                );
-                
-                if (!runsResponse.ok) {
-                    throw new Error(`Failed to get runs: ${runsResponse.status}`);
-                }
 
-                const runsData = await runsResponse.json();
-                
-                if (!runsData.workflow_runs || runsData.workflow_runs.length === 0) {
-                    throw new Error('No workflow runs found');
-                }
+                    const runsData = await runsResponse.json();
+                    
+                    // Ищем запуск, созданный не более 5 минут назад
+                    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+                    
+                    run = runsData.workflow_runs.find(r => {
+                        const runDate = new Date(r.created_at);
+                        return r.status === 'in_progress' && 
+                               r.display_title.toLowerCase().includes(env.toLowerCase()) &&
+                               runDate > fiveMinutesAgo;
+                    });
 
-                // Находим самый свежий запуск с нужным env
-                const run = runsData.workflow_runs.find(run => 
-                    run.status === 'in_progress' && 
-                    run.display_title.toLowerCase().includes(env.toLowerCase())
-                );
+                    attempts++;
+                    output.innerHTML = `Running tests on ${env.toUpperCase()} environment...\nSearching for test run (attempt ${attempts}/${maxAttempts})`;
+                }
 
                 if (!run) {
-                    throw new Error(`No active run found for ${env} environment`);
+                    throw new Error(`No active run found for ${env} environment after ${maxAttempts} attempts`);
                 }
 
                 runId = run.id;
+                output.innerHTML = `Running tests on ${env.toUpperCase()} environment...\nFound test run (ID: ${runId})\n`;
 
-                // Создаем новые элементы для статуса и ссылки
+                // Создаем элементы для статуса и ссылки
                 statusElement = document.createElement('div');
                 linkElement = document.createElement('div');
                 output.appendChild(statusElement);
