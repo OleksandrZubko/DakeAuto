@@ -548,114 +548,73 @@
                 const job = jobsData.jobs[0];
 
                 if (job) {
-                    console.log('Job found:', job.id);
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем сырые логи
-                    const logsResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`
-                            }
-                        }
-                    );
+                    let logsElement = document.getElementById('test-logs');
+                    if (!logsElement) {
+                        logsElement = document.createElement('pre');
+                        logsElement.id = 'test-logs';
+                        logsElement.className = 'test-logs';
+                        output.appendChild(logsElement);
+                    }
+
+                    // Форматируем вывод
+                    let formattedLogs = '<div class="test-steps">';
                     
-                    if (logsResponse.ok) {
-                        console.log('Logs received');
-                        const logs = await logsResponse.text();
-                        console.log('Raw logs:', logs.substring(0, 500)); // Выводим первые 500 символов для отладки
+                    // Добавляем шаги
+                    for (const step of job.steps) {
+                        const status = step.conclusion || step.status;
+                        const icon = getStepIcon(status);
+                        const statusClass = getStatusClass(status);
                         
-                        let logsElement = document.getElementById('test-logs');
-                        if (!logsElement) {
-                            logsElement = document.createElement('pre');
-                            logsElement.id = 'test-logs';
-                            logsElement.className = 'test-logs';
-                            output.appendChild(logsElement);
-                        }
+                        formattedLogs += `
+                            <div class="test-step ${statusClass}">
+                                <span class="step-icon">${icon}</span>
+                                <span class="step-name">${step.name}</span>
+                                <span class="step-status">${status}</span>
+                            </div>
+                        `;
 
-                        // Сначала выведем все логи как есть для отладки
-                        logsElement.innerHTML = `<div class="test-raw-logs">${logs}</div>`;
-
-                        // Форматируем вывод
-                        let formattedLogs = '<div class="test-steps">';
-                        
-                        // Добавляем шаги
-                        for (const step of job.steps) {
-                            const status = step.conclusion || step.status;
-                            const icon = getStepIcon(status);
-                            const statusClass = getStatusClass(status);
-                            
+                        // Если это шаг с тестами
+                        if (step.name === 'Run Playwright tests') {
                             formattedLogs += `
-                                <div class="test-step ${statusClass}">
-                                    <span class="step-icon">${icon}</span>
-                                    <span class="step-name">${step.name}</span>
-                                    <span class="step-status">${status}</span>
-                                </div>
-                            `;
-
-                            // Если это шаг с тестами
-                            if (step.name === 'Run Playwright tests') {
-                                formattedLogs += `
-                                    <div class="test-details">
-                                        <div class="test-suite">
-                                            <div class="test-header">
-                                                <span class="test-icon">🎭</span>
-                                                <span class="test-title">Running Playwright Tests</span>
+                                <div class="test-details">
+                                    <div class="test-suite">
+                                        <div class="test-header">
+                                            <span class="test-icon">🎭</span>
+                                            <span class="test-title">Running Playwright Tests</span>
+                                        </div>
+                                        <div class="test-cases">
+                                            <div class="test-case ${status === 'in_progress' ? 'running' : status === 'success' ? 'success' : 'pending'}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Login test</span>
+                                                <span class="test-case-status">${status}</span>
                                             </div>
-                                            <div class="test-cases">`;
-
-                                // Ищем результаты тестов в логах
-                                const lines = logs.split('\n');
-                                let isInTestSection = false;
-
-                                for (const line of lines) {
-                                    // Начало секции тестов
-                                    if (line.includes('Running tests/example.spec.js')) {
-                                        isInTestSection = true;
-                                        continue;
-                                    }
-
-                                    // Конец секции тестов
-                                    if (isInTestSection && line.includes('Upload artifact')) {
-                                        isInTestSection = false;
-                                        break;
-                                    }
-
-                                    // Вывод результатов тестов
-                                    if (isInTestSection) {
-                                        const trimmedLine = line.trim();
-                                        if (trimmedLine.startsWith('✓') || trimmedLine.startsWith('×')) {
-                                            const isSuccess = trimmedLine.startsWith('✓');
-                                            formattedLogs += `
-                                                <div class="test-case ${isSuccess ? 'success' : 'error'}">
-                                                    <span class="test-case-icon">${isSuccess ? '✓' : '×'}</span>
-                                                    <span class="test-case-name">${trimmedLine.substring(2)}</span>
-                                                </div>`;
-                                        }
-                                    }
-                                }
-
-                                formattedLogs += `
+                                            <div class="test-case ${status === 'in_progress' ? 'running' : status === 'success' ? 'success' : 'pending'}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Statistic test</span>
+                                                <span class="test-case-status">${status}</span>
+                                            </div>
+                                            <div class="test-case ${status === 'in_progress' ? 'running' : status === 'success' ? 'success' : 'pending'}">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">Users test</span>
+                                                <span class="test-case-status">${status}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>`;
-                            }
+                            `;
                         }
-                        formattedLogs += '</div>';
-
-                        logsElement.innerHTML = formattedLogs;
-                        logsElement.scrollTop = logsElement.scrollHeight;
-                    } else {
-                        console.log('Failed to get logs:', logsResponse.status);
                     }
+                    formattedLogs += '</div>';
+
+                    logsElement.innerHTML = formattedLogs;
+                    logsElement.scrollTop = logsElement.scrollHeight;
 
                     if (job.status === 'completed') {
                         await checkArtifacts();
                         return true;
                     }
-                } else {
-                    console.log('No job found in response');
                 }
                 return false;
             } catch (error) {
