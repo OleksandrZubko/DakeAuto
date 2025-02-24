@@ -550,67 +550,72 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    let logsElement = document.getElementById('test-logs');
-                    if (!logsElement) {
-                        logsElement = document.createElement('pre');
-                        logsElement.id = 'test-logs';
-                        logsElement.className = 'test-logs';
-                        output.appendChild(logsElement);
-                    }
-
-                    let formattedLogs = '<div class="test-steps">';
+                    // Получаем логи
+                    const logsResponse = await fetch(
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
+                        {
+                            headers: {
+                                'Authorization': `token ${token}`
+                            }
+                        }
+                    );
                     
-                    // Добавляем шаги
-                    for (const step of job.steps) {
-                        const status = step.conclusion || step.status;
-                        const icon = getStepIcon(status);
-                        const statusClass = getStatusClass(status);
+                    if (logsResponse.ok) {
+                        const logs = await logsResponse.text();
+                        const testResults = parseTestResults(logs);
                         
-                        formattedLogs += `
-                            <div class="test-step ${statusClass}">
-                                <span class="step-icon">${icon}</span>
-                                <span class="step-name">${step.name}</span>
-                                <span class="step-status">${status}</span>
-                            </div>
-                        `;
+                        let logsElement = document.getElementById('test-logs');
+                        if (!logsElement) {
+                            logsElement = document.createElement('pre');
+                            logsElement.id = 'test-logs';
+                            logsElement.className = 'test-logs';
+                            output.appendChild(logsElement);
+                        }
 
-                        // Если это шаг с тестами
-                        if (step.name === 'Run Playwright tests') {
+                        let formattedLogs = '<div class="test-steps">';
+                        
+                        // Добавляем шаги
+                        for (const step of job.steps) {
+                            const status = step.conclusion || step.status;
+                            const icon = getStepIcon(status);
+                            const statusClass = getStatusClass(status);
+                            
                             formattedLogs += `
-                                <div class="test-details">
-                                    <div class="test-suite">
-                                        <div class="test-header">
-                                            <span class="test-icon">🎭</span>
-                                            <span class="test-title">Running tests/example.spec.js</span>
-                                        </div>
-                                        
-                                        <div class="test-cases">
-                                            <div class="test-case ${getStatusClass(status)}">
-                                                <span class="test-case-icon">⚡</span>
-                                                <span class="test-case-name">Login</span>
-                                                <span class="test-case-duration">(4.7s)</span>
-                                            </div>
-                                            <div class="test-case ${getStatusClass(status)}">
-                                                <span class="test-case-icon">⚡</span>
-                                                <span class="test-case-name">Statistic</span>
-                                                <span class="test-case-duration">(3.9s)</span>
-                                            </div>
-                                            <div class="test-case ${getStatusClass(status)}">
-                                                <span class="test-case-icon">⚡</span>
-                                                <span class="test-case-name">Users</span>
-                                                <span class="test-case-duration">(4.4s)</span>
-                                            </div>
-                                            <!-- Добавьте остальные тесты здесь -->
-                                        </div>
-                                    </div>
+                                <div class="test-step ${statusClass}">
+                                    <span class="step-icon">${icon}</span>
+                                    <span class="step-name">${step.name}</span>
+                                    <span class="step-status">${status}</span>
                                 </div>
                             `;
-                        }
-                    }
-                    formattedLogs += '</div>';
 
-                    logsElement.innerHTML = formattedLogs;
-                    logsElement.scrollTop = logsElement.scrollHeight;
+                            // Если это шаг с тестами и у нас есть результаты
+                            if (step.name === 'Run Playwright tests' && testResults.length > 0) {
+                                formattedLogs += `
+                                    <div class="test-details">
+                                        <div class="test-suite">
+                                            <div class="test-header">
+                                                <span class="test-icon">🎭</span>
+                                                <span class="test-title">Running tests/example.spec.js</span>
+                                            </div>
+                                            <div class="test-cases">
+                                                ${testResults.map(test => `
+                                                    <div class="test-case ${getStatusClass(status)}">
+                                                        <span class="test-case-icon">⚡</span>
+                                                        <span class="test-case-name">${test.name}</span>
+                                                        <span class="test-case-duration">(${test.duration})</span>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }
+                        formattedLogs += '</div>';
+
+                        logsElement.innerHTML = formattedLogs;
+                        logsElement.scrollTop = logsElement.scrollHeight;
+                    }
 
                     if (job.status === 'completed') {
                         await checkArtifacts();
@@ -622,6 +627,25 @@
                 console.error('Error checking status:', error);
                 return false;
             }
+        }
+
+        // Функция для парсинга результатов тестов из логов
+        function parseTestResults(logs) {
+            const results = [];
+            const lines = logs.split('\n');
+            
+            for (const line of lines) {
+                // Ищем строки с результатами тестов
+                const match = line.match(/\[chromium\] › tests\/example\.spec\.js:(\d+):(\d+) › (.+) \((\d+\.\d+)s\)/);
+                if (match) {
+                    results.push({
+                        name: match[3].trim(),
+                        duration: match[4] + 's'
+                    });
+                }
+            }
+            
+            return results;
         }
 
         function getStepIcon(status) {
