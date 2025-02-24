@@ -647,7 +647,10 @@
         }
 
         async function runTests(env) {
+            // Очищаем предыдущие результаты
             output = document.getElementById('output');
+            output.innerHTML = ''; // Очищаем весь вывод
+            
             token = localStorage.getItem('github_token');
             
             if (!token) {
@@ -675,15 +678,10 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Failed to start tests: ${response.status}`);
+                    throw new Error(`Failed to start tests: ${response.status} ${response.statusText}`);
                 }
 
-                output.innerHTML += `\nTests started successfully! Waiting for results...\n\n`;
-
-                // Ждем немного, чтобы workflow успел начаться
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
-                // Получаем список последних workflow runs
+                // Получаем ID последнего запуска
                 const runsResponse = await fetch(
                     'https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs?per_page=1',
                     {
@@ -697,7 +695,7 @@
                 const runsData = await runsResponse.json();
                 runId = runsData.workflow_runs[0].id;
 
-                // Создаем элементы для статуса и ссылки
+                // Создаем новые элементы для статуса и ссылки
                 statusElement = document.createElement('div');
                 linkElement = document.createElement('div');
                 output.appendChild(statusElement);
@@ -713,7 +711,7 @@
                     } catch (error) {
                         console.error('Error checking status:', error);
                         clearInterval(interval);
-                        statusElement.textContent += `\nError checking status: ${error.message}`;
+                        statusElement.innerHTML += `\nError checking status: ${error.message}`;
                     }
                 }, 5000);
 
