@@ -551,17 +551,16 @@
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
                     // Получаем логи
-                    const logsResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`
-                            }
+                    const logsResponse = await fetch(job.url, {
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
                         }
-                    );
+                    });
                     
                     if (logsResponse.ok) {
-                        const logs = await logsResponse.text();
+                        const jobDetails = await logsResponse.json();
+                        const logs = jobDetails.steps.find(s => s.name === 'Run Playwright tests')?.output || '';
                         
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -569,33 +568,6 @@
                             logsElement.id = 'test-logs';
                             logsElement.className = 'test-logs';
                             output.appendChild(logsElement);
-                        }
-
-                        // Парсим результаты тестов
-                        const testResults = [];
-                        const lines = logs.split('\n');
-                        let currentTest = null;
-
-                        for (const line of lines) {
-                            // Начало теста
-                            if (line.includes('Running tests/example.spec.js')) {
-                                currentTest = {
-                                    name: 'example.spec.js',
-                                    tests: []
-                                };
-                            }
-                            // Результат теста
-                            else if (line.includes('✓') || line.includes('×')) {
-                                const isSuccess = line.includes('✓');
-                                const testMatch = line.match(/(?:✓|×)\s+(.+?)\s+\((\d+ms|\d+\.\d+s)\)/);
-                                if (testMatch && currentTest) {
-                                    currentTest.tests.push({
-                                        name: testMatch[1],
-                                        duration: testMatch[2],
-                                        success: isSuccess
-                                    });
-                                }
-                            }
                         }
 
                         // Форматируем вывод
@@ -615,27 +587,45 @@
                                 </div>
                             `;
 
-                            // Если это шаг с тестами и у нас есть результаты
-                            if (step.name === 'Run Playwright tests' && currentTest) {
+                            // Если это шаг с тестами
+                            if (step.name === 'Run Playwright tests') {
                                 formattedLogs += `
                                     <div class="test-details">
                                         <div class="test-suite">
                                             <div class="test-header">
                                                 <span class="test-icon">🎭</span>
-                                                <span class="test-title">${currentTest.name}</span>
+                                                <span class="test-title">Running Playwright Tests</span>
                                             </div>
-                                            <div class="test-cases">
-                                                ${currentTest.tests.map(test => `
-                                                    <div class="test-case ${test.success ? 'success' : 'error'}">
-                                                        <span class="test-case-icon">${test.success ? '✓' : '×'}</span>
-                                                        <span class="test-case-name">${test.name}</span>
-                                                        <span class="test-case-duration">(${test.duration})</span>
-                                                    </div>
-                                                `).join('')}
-                                            </div>
-                                        </div>
+                                            <div class="test-cases">`;
+
+                                // Разбираем вывод тестов
+                                const testLines = logs.split('\n');
+                                for (const line of testLines) {
+                                    if (line.includes('Running')) {
+                                        formattedLogs += `
+                                            <div class="test-case running">
+                                                <span class="test-case-icon">⚡</span>
+                                                <span class="test-case-name">${line}</span>
+                                            </div>`;
+                                    } else if (line.includes('✓')) {
+                                        formattedLogs += `
+                                            <div class="test-case success">
+                                                <span class="test-case-icon">✓</span>
+                                                <span class="test-case-name">${line}</span>
+                                            </div>`;
+                                    } else if (line.includes('✘')) {
+                                        formattedLogs += `
+                                            <div class="test-case error">
+                                                <span class="test-case-icon">✘</span>
+                                                <span class="test-case-name">${line}</span>
+                                            </div>`;
+                                    }
+                                }
+
+                                formattedLogs += `
                                     </div>
-                                `;
+                                </div>
+                            </div>`;
                             }
                         }
                         formattedLogs += '</div>';
