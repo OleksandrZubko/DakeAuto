@@ -562,7 +562,6 @@
                     
                     if (logsResponse.ok) {
                         const logs = await logsResponse.text();
-                        const testResults = parseTestResults(logs);
                         
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -572,6 +571,34 @@
                             output.appendChild(logsElement);
                         }
 
+                        // Парсим результаты тестов
+                        const testResults = [];
+                        const lines = logs.split('\n');
+                        let currentTest = null;
+
+                        for (const line of lines) {
+                            // Начало теста
+                            if (line.includes('Running tests/example.spec.js')) {
+                                currentTest = {
+                                    name: 'example.spec.js',
+                                    tests: []
+                                };
+                            }
+                            // Результат теста
+                            else if (line.includes('✓') || line.includes('×')) {
+                                const isSuccess = line.includes('✓');
+                                const testMatch = line.match(/(?:✓|×)\s+(.+?)\s+\((\d+ms|\d+\.\d+s)\)/);
+                                if (testMatch && currentTest) {
+                                    currentTest.tests.push({
+                                        name: testMatch[1],
+                                        duration: testMatch[2],
+                                        success: isSuccess
+                                    });
+                                }
+                            }
+                        }
+
+                        // Форматируем вывод
                         let formattedLogs = '<div class="test-steps">';
                         
                         // Добавляем шаги
@@ -589,18 +616,18 @@
                             `;
 
                             // Если это шаг с тестами и у нас есть результаты
-                            if (step.name === 'Run Playwright tests' && testResults.length > 0) {
+                            if (step.name === 'Run Playwright tests' && currentTest) {
                                 formattedLogs += `
                                     <div class="test-details">
                                         <div class="test-suite">
                                             <div class="test-header">
                                                 <span class="test-icon">🎭</span>
-                                                <span class="test-title">Running tests/example.spec.js</span>
+                                                <span class="test-title">${currentTest.name}</span>
                                             </div>
                                             <div class="test-cases">
-                                                ${testResults.map(test => `
-                                                    <div class="test-case ${getStatusClass(status)}">
-                                                        <span class="test-case-icon">⚡</span>
+                                                ${currentTest.tests.map(test => `
+                                                    <div class="test-case ${test.success ? 'success' : 'error'}">
+                                                        <span class="test-case-icon">${test.success ? '✓' : '×'}</span>
                                                         <span class="test-case-name">${test.name}</span>
                                                         <span class="test-case-duration">(${test.duration})</span>
                                                     </div>
@@ -627,25 +654,6 @@
                 console.error('Error checking status:', error);
                 return false;
             }
-        }
-
-        // Функция для парсинга результатов тестов из логов
-        function parseTestResults(logs) {
-            const results = [];
-            const lines = logs.split('\n');
-            
-            for (const line of lines) {
-                // Ищем строки с результатами тестов
-                const match = line.match(/\[chromium\] › tests\/example\.spec\.js:(\d+):(\d+) › (.+) \((\d+\.\d+)s\)/);
-                if (match) {
-                    results.push({
-                        name: match[3].trim(),
-                        duration: match[4] + 's'
-                    });
-                }
-            }
-            
-            return results;
         }
 
         function getStepIcon(status) {
