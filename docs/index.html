@@ -550,117 +550,87 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем логи
-                    const logsResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
-                        {
-                            headers: {
-                                'Authorization': `token ${token}`
+                    // Получаем детали шага с тестами
+                    const playwrightStep = job.steps.find(step => step.name === 'Run Playwright tests');
+                    console.log('Playwright step:', playwrightStep); // Для отладки
+
+                    if (playwrightStep) {
+                        const stepLogsResponse = await fetch(
+                            `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
+                            {
+                                headers: {
+                                    'Authorization': `token ${token}`
+                                }
                             }
-                        }
-                    );
-                    
-                    if (logsResponse.ok) {
-                        const logs = await logsResponse.text();
-                        console.log('Raw logs:', logs); // Выводим сырые логи
-                        console.log('Job ID:', job.id); // Выводим ID задачи
-                        console.log('Job steps:', job.steps); // Выводим шаги
-
-                        // Ищем названия тестов в логах
-                        const testResults = [];
-                        const lines = logs.split('\n');
-                        for (const line of lines) {
-                            // Ищем строки вида "✓ 1 [chromium] › tests/example.spec.js:39:5 › Login (5.4s)"
-                            const match = line.match(/✓\s+\d+\s+\[chromium\]\s+›\s+[^›]+›\s+([^(]+)\s*\(([^)]+)\)/);
-                            if (match) {
-                                testResults.push({
-                                    name: match[1].trim(),
-                                    duration: match[2].trim(),
-                                    status: 'success'
-                                });
-                            }
-                            // Также ищем проваленные тесты (если они будут)
-                            const failMatch = line.match(/✘\s+\d+\s+\[chromium\]\s+›\s+[^›]+›\s+([^(]+)\s*\(([^)]+)\)/);
-                            if (failMatch) {
-                                testResults.push({
-                                    name: failMatch[1].trim(),
-                                    duration: failMatch[2].trim(),
-                                    status: 'failed'
-                                });
-                            }
-                        }
-
-                        console.log('Found test results:', testResults); // Для отладки
-
-                        let logsElement = document.getElementById('test-logs');
-                        if (!logsElement) {
-                            logsElement = document.createElement('pre');
-                            logsElement.id = 'test-logs';
-                            logsElement.className = 'test-logs';
-                            output.appendChild(logsElement);
-                        }
-
-                        // Форматируем вывод
-                        let formattedLogs = '<div class="test-steps">';
+                        );
                         
-                        // Добавляем шаги
-                        for (const step of job.steps) {
-                            const status = step.conclusion || step.status;
-                            const icon = getStepIcon(status);
-                            const statusClass = getStatusClass(status);
+                        if (stepLogsResponse.ok) {
+                            const logs = await stepLogsResponse.text();
+                            console.log('Step logs:', logs); // Для отладки
+
+                            let logsElement = document.getElementById('test-logs');
+                            if (!logsElement) {
+                                logsElement = document.createElement('pre');
+                                logsElement.id = 'test-logs';
+                                logsElement.className = 'test-logs';
+                                output.appendChild(logsElement);
+                            }
+
+                            // Ищем строки с результатами тестов
+                            const testLines = logs.split('\n').filter(line => 
+                                line.includes('[chromium] › tests/example.spec.js')
+                            );
+                            console.log('Test lines:', testLines); // Для отладки
+
+                            // Форматируем вывод
+                            let formattedLogs = '<div class="test-steps">';
                             
-                            formattedLogs += `
-                                <div class="test-step ${statusClass}">
-                                    <span class="step-icon">${icon}</span>
-                                    <span class="step-name">${step.name}</span>
-                                    <span class="step-status">${status}</span>
-                                </div>
-                            `;
-
-                            // Если это шаг с тестами
-                            if (step.name === 'Run Playwright tests') {
+                            // Добавляем шаги
+                            for (const step of job.steps) {
+                                const status = step.conclusion || step.status;
+                                const icon = getStepIcon(status);
+                                const statusClass = getStatusClass(status);
+                                
                                 formattedLogs += `
-                                    <div class="test-details">
-                                        <div class="test-suite">
-                                            <div class="test-header">
-                                                <span class="test-icon">🎭</span>
-                                                <span class="test-title">Running Playwright Tests</span>
-                                            </div>
-                                            <div class="test-cases">
-                        `;
+                                    <div class="test-step ${statusClass}">
+                                        <span class="step-icon">${icon}</span>
+                                        <span class="step-name">${step.name}</span>
+                                        <span class="step-status">${status}</span>
+                                    </div>
+                                `;
 
-                                // Добавляем найденные тесты или показываем сообщение о загрузке
-                                if (testResults.length > 0) {
-                                    testResults.forEach(test => {
+                                // Если это шаг с тестами
+                                if (step.name === 'Run Playwright tests') {
+                                    formattedLogs += `
+                                        <div class="test-details">
+                                            <div class="test-suite">
+                                                <div class="test-header">
+                                                    <span class="test-icon">🎭</span>
+                                                    <span class="test-title">Running Playwright Tests</span>
+                                                </div>
+                                                <div class="test-cases">
+                                `;
+
+                                    // Выводим найденные строки тестов
+                                    testLines.forEach(line => {
                                         formattedLogs += `
-                                            <div class="test-case ${test.status === 'success' ? 'success' : 'error'}">
-                                                <span class="test-case-icon">${test.status === 'success' ? '✓' : '×'}</span>
-                                                <span class="test-case-name">${test.name}</span>
-                                                <span class="test-case-duration">${test.duration}</span>
+                                            <div class="test-case">
+                                                <span class="test-case-name">${line}</span>
                                             </div>
                                         `;
                                     });
-                                } else {
+
                                     formattedLogs += `
-                                        <div class="test-case running">
-                                            <span class="test-case-icon">⚡</span>
-                                            <span class="test-case-name">Running tests...</span>
-                                            <span class="test-case-status">in_progress</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     `;
                                 }
-
-                                formattedLogs += `
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
                             }
-                        }
-                        formattedLogs += '</div>';
+                            formattedLogs += '</div>';
 
-                        logsElement.innerHTML = formattedLogs;
-                        logsElement.scrollTop = logsElement.scrollHeight;
+                            logsElement.innerHTML = formattedLogs;
+                        }
                     }
 
                     if (job.status === 'completed') {
