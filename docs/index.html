@@ -563,19 +563,30 @@
                     if (logsResponse.ok) {
                         const logs = await logsResponse.text();
                         // Ищем названия тестов в логах
-                        const testNames = [];
+                        const testResults = [];
                         const lines = logs.split('\n');
                         for (const line of lines) {
-                            // Ищем строки вида test('Name', async...)
-                            if (line.includes("test('") || line.includes('test("')) {
-                                const match = line.match(/test\(['"](.+?)['"],/);
-                                if (match) {
-                                    testNames.push(match[1]);
-                                }
+                            // Ищем строки вида "✓ 1 [chromium] › tests/example.spec.js:39:5 › Login (5.4s)"
+                            const match = line.match(/✓\s+\d+\s+\[chromium\]\s+›\s+[^›]+›\s+([^(]+)\s*\(([^)]+)\)/);
+                            if (match) {
+                                testResults.push({
+                                    name: match[1].trim(),
+                                    duration: match[2].trim(),
+                                    status: 'success'
+                                });
+                            }
+                            // Также ищем проваленные тесты (если они будут)
+                            const failMatch = line.match(/✘\s+\d+\s+\[chromium\]\s+›\s+[^›]+›\s+([^(]+)\s*\(([^)]+)\)/);
+                            if (failMatch) {
+                                testResults.push({
+                                    name: failMatch[1].trim(),
+                                    duration: failMatch[2].trim(),
+                                    status: 'failed'
+                                });
                             }
                         }
 
-                        console.log('Found test names:', testNames); // Для отладки
+                        console.log('Found test results:', testResults); // Для отладки
 
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -615,13 +626,13 @@
                         `;
 
                                 // Добавляем найденные тесты или показываем сообщение о загрузке
-                                if (testNames.length > 0) {
-                                    testNames.forEach(testName => {
+                                if (testResults.length > 0) {
+                                    testResults.forEach(test => {
                                         formattedLogs += `
-                                            <div class="test-case ${status === 'in_progress' ? 'running' : status === 'success' ? 'success' : 'pending'}">
-                                                <span class="test-case-icon">⚡</span>
-                                                <span class="test-case-name">${testName}</span>
-                                                <span class="test-case-status">${status}</span>
+                                            <div class="test-case ${test.status === 'success' ? 'success' : 'error'}">
+                                                <span class="test-case-icon">${test.status === 'success' ? '✓' : '×'}</span>
+                                                <span class="test-case-name">${test.name}</span>
+                                                <span class="test-case-duration">${test.duration}</span>
                                             </div>
                                         `;
                                     });
@@ -629,7 +640,7 @@
                                     formattedLogs += `
                                         <div class="test-case running">
                                             <span class="test-case-icon">⚡</span>
-                                            <span class="test-case-name">Loading tests...</span>
+                                            <span class="test-case-name">Running tests...</span>
                                             <span class="test-case-status">in_progress</span>
                                         </div>
                                     `;
