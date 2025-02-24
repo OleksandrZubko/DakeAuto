@@ -562,6 +562,10 @@
                     
                     if (logsResponse.ok) {
                         const logs = await logsResponse.text();
+                        console.log('Raw logs:', logs); // Выводим сырые логи
+                        console.log('Job ID:', job.id); // Выводим ID задачи
+                        console.log('Job steps:', job.steps); // Выводим шаги
+
                         // Ищем названия тестов в логах
                         const testResults = [];
                         const lines = logs.split('\n');
