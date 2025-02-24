@@ -548,6 +548,7 @@
                 const job = jobsData.jobs[0];
 
                 if (job) {
+                    console.log('Job found:', job.id);
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
                     // Получаем сырые логи
@@ -561,7 +562,9 @@
                     );
                     
                     if (logsResponse.ok) {
+                        console.log('Logs received');
                         const logs = await logsResponse.text();
+                        console.log('Raw logs:', logs.substring(0, 500)); // Выводим первые 500 символов для отладки
                         
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -570,6 +573,9 @@
                             logsElement.className = 'test-logs';
                             output.appendChild(logsElement);
                         }
+
+                        // Сначала выведем все логи как есть для отладки
+                        logsElement.innerHTML = `<div class="test-raw-logs">${logs}</div>`;
 
                         // Форматируем вывод
                         let formattedLogs = '<div class="test-steps">';
@@ -640,12 +646,16 @@
 
                         logsElement.innerHTML = formattedLogs;
                         logsElement.scrollTop = logsElement.scrollHeight;
+                    } else {
+                        console.log('Failed to get logs:', logsResponse.status);
                     }
 
                     if (job.status === 'completed') {
                         await checkArtifacts();
                         return true;
                     }
+                } else {
+                    console.log('No job found in response');
                 }
                 return false;
             } catch (error) {
