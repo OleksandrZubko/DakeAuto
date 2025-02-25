@@ -536,6 +536,11 @@
     </style>
 </head>
 <body>
+    <div id="blur-overlay" class="blur-overlay">
+        <div id="timer" class="timer">07:00</div>
+        <div class="timer-text">Running tests, please wait...</div>
+    </div>
+
     <div class="container">
         <div class="card" id="login-section">
             <h1>Playwright Test Runner</h1>
@@ -556,11 +561,6 @@
             <button class="clear-token" onclick="clearToken()">Clear Token</button>
             <div id="output">Select environment to run tests...</div>
         </div>
-    </div>
-
-    <div id="blur-overlay" class="blur-overlay">
-        <div id="timer" class="timer">07:00</div>
-        <div class="timer-text">Running tests, please wait...</div>
     </div>
 
     <script>
@@ -978,5 +978,4 @@
         document.addEventListener('DOMContentLoaded', startTimer);
     </script>
 </body>
-
 </html>  
