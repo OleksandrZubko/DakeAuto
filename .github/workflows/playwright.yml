@@ -2,9 +2,9 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
     inputs:
       environment:
@@ -30,7 +30,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: 18
 
     - name: Install dependencies
       run: |
@@ -91,6 +91,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Download playwright report
         uses: actions/download-artifact@v4
@@ -102,7 +104,8 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull origin main
           git add -f docs/playwright-report
           git commit -m "Update Playwright report" || echo "No changes to commit"
-          git push
+          git push origin main
         
