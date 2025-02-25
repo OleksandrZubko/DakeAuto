@@ -92,6 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          token: ${{ secrets.API_TOKEN }}
           fetch-depth: 0
       
       - name: Download playwright report
@@ -104,7 +105,8 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git pull origin main
+          git fetch origin main
+          git reset --hard origin/main
           git add -f docs/playwright-report
           git commit -m "Update Playwright report" || echo "No changes to commit"
           git push origin main
