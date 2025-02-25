@@ -701,10 +701,10 @@
                     throw new Error(`Failed to start tests: ${response.status} ${response.statusText}`);
                 }
 
-                // Просто ждем 5 секунд, чтобы запуск точно создался
+                // Ждем 5 секунд
                 await new Promise(resolve => setTimeout(resolve, 5000));
 
-                // Получаем самый последний запуск
+                // Получаем последний запуск
                 const runsResponse = await fetch(
                     'https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/runs?per_page=1',
                     {
@@ -714,7 +714,7 @@
                         }
                     }
                 );
-                
+
                 if (!runsResponse.ok) {
                     throw new Error(`Failed to get runs: ${runsResponse.status}`);
                 }
