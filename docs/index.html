@@ -545,16 +545,14 @@
                 );
                 
                 const jobsData = await jobsResponse.json();
-                console.log('Jobs data:', jobsData); // Для отладки
-                
                 const job = jobsData.jobs[0];
 
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем логи напрямую из job
+                    // Получаем логи через специальный эндпоинт
                     const logsResponse = await fetch(
-                        job.url,  // Используем URL задачи
+                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/actions/jobs/${job.id}/logs`,
                         {
                             headers: {
                                 'Authorization': `token ${token}`,
@@ -564,15 +562,33 @@
                     );
                     
                     if (logsResponse.ok) {
-                        const jobDetails = await logsResponse.json();
-                        console.log('Job details:', jobDetails); // Для отладки
-                        
+                        const logs = await logsResponse.text();
+                        console.log('Raw logs:', logs); // Для отладки
+
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
                             logsElement = document.createElement('pre');
                             logsElement.id = 'test-logs';
                             logsElement.className = 'test-logs';
                             output.appendChild(logsElement);
+                        }
+
+                        // Ищем результаты тестов в логах
+                        const testResults = [];
+                        const lines = logs.split('\n');
+                        for (const line of lines) {
+                            // Ищем строки с результатами тестов (они обычно начинаются с ✓ или ×)
+                            if (line.includes('✓') || line.includes('×')) {
+                                const isSuccess = line.includes('✓');
+                                const testName = line.replace(/^.*?(✓|×)\s*/, '').split(' (')[0];
+                                const duration = line.match(/\(([^)]+)\)/)?.[1] || '';
+                                
+                                testResults.push({
+                                    name: testName,
+                                    status: isSuccess ? 'success' : 'error',
+                                    duration: duration
+                                });
+                            }
                         }
 
                         // Форматируем вывод
@@ -592,17 +608,29 @@
                                 </div>
                             `;
 
-                            // Если это шаг с тестами
-                            if (step.name === 'Run Playwright tests') {
+                            // Если это шаг с тестами и у нас есть результаты
+                            if (step.name === 'Run Playwright tests' && testResults.length > 0) {
                                 formattedLogs += `
                                     <div class="test-details">
                                         <div class="test-suite">
                                             <div class="test-header">
                                                 <span class="test-icon">🎭</span>
-                                                <span class="test-title">Running Playwright Tests</span>
+                                                <span class="test-title">Playwright Tests Results</span>
                                             </div>
                                             <div class="test-cases">
-                                                <pre>${step.output || 'Waiting for test output...'}</pre>
+                        `;
+
+                                testResults.forEach(test => {
+                                    formattedLogs += `
+                                        <div class="test-case ${test.status}">
+                                            <span class="test-case-icon">${test.status === 'success' ? '✓' : '×'}</span>
+                                            <span class="test-case-name">${test.name}</span>
+                                            <span class="test-case-duration">${test.duration}</span>
+                                        </div>
+                                    `;
+                                });
+
+                                formattedLogs += `
                                             </div>
                                         </div>
                                     </div>
