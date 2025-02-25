@@ -790,17 +790,25 @@
                     let artifactsHtml = `<h3>Test Reports:</h3>`;
                     artifactsHtml += `
                         <a href="playwright-report/index.html" class="btn btn-primary" style="
-                            display: inline-block;
-                            padding: 10px 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 200px;
+                            height: 48px;
                             background-color: #2ea44f;
                             color: white;
                             text-decoration: none;
-                            border-radius: 6px;
-                            font-weight: 500;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            font-weight: 600;
                             margin: 10px 0;
-                            border: 1px solid rgba(27, 31, 35, 0.15);
-                            box-shadow: 0 1px 0 rgba(27, 31, 35, 0.1);
+                            border: none;
+                            transition: all 0.2s ease;
+                            box-shadow: 0 4px 6px rgba(46, 164, 79, 0.11);
                         ">
+                            <svg style="margin-right: 8px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.5V10.5M8 10.5L4 6.5M8 10.5L12 6.5M2 14.5H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             Show Report
                         </a>`;
                     artifactsElement.innerHTML = artifactsHtml;

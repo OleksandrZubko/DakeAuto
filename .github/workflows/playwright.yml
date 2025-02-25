@@ -26,21 +26,22 @@ jobs:
     permissions:
       contents: write
       actions: read
-
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+      with:
+        ref: ${{ github.head_ref || github.ref_name }}
+        fetch-depth: 0
+        
+    - uses: actions/setup-node@v4
       with:
         node-version: 18
-
+        
     - name: Install dependencies
       run: npm ci
-
+      
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-
+      
     - name: Debug environment variables
       run: |
         echo "Environment: ${{ github.event.inputs.environment || 'prod' }}"
@@ -94,14 +95,13 @@ jobs:
         cp -r playwright-report/* docs/playwright-report/ || true
         cp -r test-results docs/playwright-report/ || true
         
-    - name: Commit and push report
+    - name: Push changes
       if: always()
-      run: |
-        git config --global user.name github-actions
-        git config --global user.email github-actions@github.com
-        git add -f docs/playwright-report docs/logs
-        git commit -m "Update Playwright report and logs" || echo "No changes to commit"
-        git push
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Update Playwright report and logs
+        file_pattern: 'docs/**/*'
+        branch: ${{ github.head_ref || github.ref_name }}
 
   deploy-report:
     needs: test
