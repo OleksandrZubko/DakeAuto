@@ -787,30 +787,22 @@
                 }
 
                 if (artifactsData.artifacts.length > 0) {
-                    let artifactsHtml = `<h3>Test Reports:</h3><ul>`;
-                    
-                    for (const artifact of artifactsData.artifacts) {
-                        if (artifact.name === 'playwright-report') {
-                            artifactsHtml += `
-                                <li>
-                                    <strong>HTML Report:</strong> 
-                                    <a href="#" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}', 'playwright-report.zip')">
-                                        Download HTML Report
-                                    </a>
-                                </li>`;
-                        }
-                        if (artifact.name === 'running-log') {
-                            artifactsHtml += `
-                                <li>
-                                    <strong>Test Logs:</strong> 
-                                    <a href="#" onclick="downloadArtifact(event, '${artifact.archive_download_url}', '${token}', 'test-logs.zip')">
-                                        Download Logs
-                                    </a>
-                                </li>`;
-                        }
-                    }
-                    
-                    artifactsHtml += `</ul>`;
+                    let artifactsHtml = `<h3>Test Reports:</h3>`;
+                    artifactsHtml += `
+                        <a href="playwright-report/index.html" class="btn btn-primary" style="
+                            display: inline-block;
+                            padding: 10px 20px;
+                            background-color: #2ea44f;
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 6px;
+                            font-weight: 500;
+                            margin: 10px 0;
+                            border: 1px solid rgba(27, 31, 35, 0.15);
+                            box-shadow: 0 1px 0 rgba(27, 31, 35, 0.1);
+                        ">
+                            Show Report
+                        </a>`;
                     artifactsElement.innerHTML = artifactsHtml;
                 }
             } catch (error) {
