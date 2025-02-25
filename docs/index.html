@@ -552,9 +552,9 @@
                 if (job) {
                     statusElement.textContent = `Status: ${job.status} (${job.conclusion || 'in progress'})\n`;
                     
-                    // Получаем логи через check-run API
-                    const checkRunResponse = await fetch(
-                        `https://api.github.com/repos/OleksandrZubko/DakeAuto/check-runs/${job.check_run_id}`,
+                    // Получаем логи напрямую из job
+                    const logsResponse = await fetch(
+                        job.url,  // Используем URL задачи
                         {
                             headers: {
                                 'Authorization': `token ${token}`,
@@ -563,9 +563,9 @@
                         }
                     );
                     
-                    if (checkRunResponse.ok) {
-                        const checkRunData = await checkRunResponse.json();
-                        console.log('Check run data:', checkRunData); // Для отладки
+                    if (logsResponse.ok) {
+                        const jobDetails = await logsResponse.json();
+                        console.log('Job details:', jobDetails); // Для отладки
                         
                         let logsElement = document.getElementById('test-logs');
                         if (!logsElement) {
@@ -592,11 +592,8 @@
                                 </div>
                             `;
 
-                            // Если это шаг с тестами и у нас есть output
-                            if (step.name === 'Run Playwright tests' && checkRunData.output && checkRunData.output.text) {
-                                const testOutput = checkRunData.output.text;
-                                console.log('Test output:', testOutput); // Для отладки
-
+                            // Если это шаг с тестами
+                            if (step.name === 'Run Playwright tests') {
                                 formattedLogs += `
                                     <div class="test-details">
                                         <div class="test-suite">
@@ -605,7 +602,7 @@
                                                 <span class="test-title">Running Playwright Tests</span>
                                             </div>
                                             <div class="test-cases">
-                                                <pre>${testOutput}</pre>
+                                                <pre>${step.output || 'Waiting for test output...'}</pre>
                                             </div>
                                         </div>
                                     </div>
