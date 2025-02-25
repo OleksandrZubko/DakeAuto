@@ -1,137 +1,49 @@
 Test execution log:
-Environment: dev
-
-Running 1 test using 1 worker
-
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:40:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  1 [chromium] › tests/example.spec.js:39:5 › Login (160ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:40:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  2 [chromium] › tests/example.spec.js:39:5 › Login (retry #1) (199ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:40:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  3 [chromium] › tests/example.spec.js:39:5 › Login (retry #2) (162ms)
-
-
-  1) [chromium] › tests/example.spec.js:39:5 › Login ───────────────────────────────────────────────
-
-    Error: BASE_URL environment variable is not set
-
-       6 |   try {
-       7 |     if (!process.env.BASE_URL) {
-    >  8 |       throw new Error('BASE_URL environment variable is not set');
-         |             ^
-       9 |     }
-      10 |     console.log('Using BASE_URL:', process.env.BASE_URL);
-      11 |     
-        at login (/home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:8:13)
-        at /home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:40:9
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/example-Login-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/example-Login-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: BASE_URL environment variable is not set
-
-       6 |   try {
-       7 |     if (!process.env.BASE_URL) {
-    >  8 |       throw new Error('BASE_URL environment variable is not set');
-         |             ^
-       9 |     }
-      10 |     console.log('Using BASE_URL:', process.env.BASE_URL);
-      11 |     
-        at login (/home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:8:13)
-        at /home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:40:9
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/example-Login-chromium-retry1/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/example-Login-chromium-retry1/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/example-Login-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/example-Login-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: BASE_URL environment variable is not set
-
-       6 |   try {
-       7 |     if (!process.env.BASE_URL) {
-    >  8 |       throw new Error('BASE_URL environment variable is not set');
-         |             ^
-       9 |     }
-      10 |     console.log('Using BASE_URL:', process.env.BASE_URL);
-      11 |     
-        at login (/home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:8:13)
-        at /home/runner/work/DakeAuto/DakeAuto/tests/example.spec.js:40:9
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/example-Login-chromium-retry2/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/example-Login-chromium-retry2/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  1 failed
-    [chromium] › tests/example.spec.js:39:5 › Login ────────────────────────────────────────────────
+Environment: prod
+npm warn exec The following package was not found and will be installed: playwright@1.50.1
+Error: Cannot find module 'dotenv'
+Require stack:
+- /home/runner/work/DakeAuto/DakeAuto/playwright.config.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/transform/transform.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/common/esmLoaderHost.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/processHost.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/loaderHost.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/loadUtils.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/reporters.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/runner.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/program.js
+- /home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/cli.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+    at Function.resolveFilename [as _resolveFilename] (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/transform/transform.js:249:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:981:27)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (/home/runner/work/DakeAuto/DakeAuto/playwright.config.js:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module.f._compile (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/utilsBundleImpl.js:16:994)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at Object.i.<computed>.ut._extensions.<computed> [as .js] (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/utilsBundleImpl.js:16:1010)
+    at Module.load (node:internal/modules/cjs/loader:1203:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1019:12)
+    at Module.require (node:internal/modules/cjs/loader:1231:19)
+    at require (node:internal/modules/helpers:177:18)
+    at requireOrImport (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/transform/transform.js:230:18)
+    at loadUserConfig (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/common/configLoader.js:94:83)
+    at loadConfig (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/common/configLoader.js:105:28)
+    at loadConfigFromFileRestartIfNeeded (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/common/configLoader.js:286:10)
+    at runTests (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/program.js:199:18)
+    at t.<anonymous> (/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/program.js:54:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/runner/work/DakeAuto/DakeAuto/playwright.config.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/transform/transform.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/common/esmLoaderHost.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/processHost.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/loaderHost.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/loadUtils.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/reporters.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/runner/runner.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/lib/program.js',
+    '/home/runner/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/cli.js'
+  ]
+}
