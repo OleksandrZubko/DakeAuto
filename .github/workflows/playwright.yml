@@ -23,6 +23,9 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: Dake
+    permissions:
+      contents: write
+      actions: read
 
     steps:
     - uses: actions/checkout@v4
@@ -33,9 +36,10 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: |
-        npm ci
-        npx playwright install --with-deps
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
 
     - name: Debug environment variables
       run: |
@@ -82,6 +86,22 @@ jobs:
       with:
         name: running-log
         path: test-results/running-log.txt
+
+    - name: Copy report to docs
+      if: always()
+      run: |
+        mkdir -p docs/playwright-report
+        cp -r playwright-report/* docs/playwright-report/ || true
+        cp -r test-results docs/playwright-report/ || true
+        
+    - name: Commit and push report
+      if: always()
+      run: |
+        git config --global user.name github-actions
+        git config --global user.email github-actions@github.com
+        git add -f docs/playwright-report
+        git commit -m "Update Playwright report" || echo "No changes to commit"
+        git push
 
   deploy-report:
     needs: test
