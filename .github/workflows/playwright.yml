@@ -88,12 +88,12 @@ jobs:
         name: running-log
         path: test-results/running-log.txt
 
-    - name: Copy report to docs
+    - name: Copy report and artifacts to docs
       if: always()
       run: |
         mkdir -p docs/playwright-report
         cp -r playwright-report/* docs/playwright-report/ || true
-        cp -r test-results docs/playwright-report/ || true
+        cp -r test-results/* docs/playwright-report/test-results/ || true
         
     - name: Push changes
       if: always()

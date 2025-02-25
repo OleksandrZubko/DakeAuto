@@ -11,13 +11,13 @@ module.exports = defineConfig({
   workers: 1,
   reporter: [
     ['list'],
-    ['html']
+    ['html', { outputFolder: 'playwright-report' }]
   ],
   use: {
     baseURL: process.env.BASE_URL,
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    trace: 'on',
+    screenshot: 'on',
+    video: 'on',
     navigationTimeout: 30000,
     actionTimeout: 15000,
     ignoreHTTPSErrors: true
