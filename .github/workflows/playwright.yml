@@ -87,13 +87,10 @@ jobs:
     needs: test
     if: always()
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.API_TOKEN }}
-          fetch-depth: 0
+          persist-credentials: false
       
       - name: Download playwright report
         uses: actions/download-artifact@v4
@@ -105,9 +102,10 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git fetch origin main
-          git reset --hard origin/main
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git add -f docs/playwright-report
           git commit -m "Update Playwright report" || echo "No changes to commit"
           git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
         
