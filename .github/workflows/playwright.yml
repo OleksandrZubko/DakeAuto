@@ -57,10 +57,10 @@ jobs:
     - name: Save logs
       if: always()
       run: |
-        mkdir -p logs
-        echo "Test execution log:" > logs/test.log
-        echo "Environment: ${{ github.event.inputs.environment }}" >> logs/test.log
-        npx playwright test tests/example.spec.js --reporter=list >> logs/test.log 2>&1
+        mkdir -p docs/logs
+        echo "Test execution log:" > docs/logs/test.log
+        echo "Environment: ${{ github.event.inputs.environment || 'prod' }}" >> docs/logs/test.log
+        npx playwright test tests/example.spec.js --reporter=list >> docs/logs/test.log 2>&1 || true
 
     - name: Upload test results
       if: always()
@@ -99,8 +99,8 @@ jobs:
       run: |
         git config --global user.name github-actions
         git config --global user.email github-actions@github.com
-        git add -f docs/playwright-report
-        git commit -m "Update Playwright report" || echo "No changes to commit"
+        git add -f docs/playwright-report docs/logs
+        git commit -m "Update Playwright report and logs" || echo "No changes to commit"
         git push
 
   deploy-report:
