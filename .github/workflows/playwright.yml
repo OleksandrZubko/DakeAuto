@@ -82,4 +82,27 @@ jobs:
       with:
         name: running-log
         path: test-results/running-log.txt
+
+  deploy-report:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download playwright report
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report
+          path: docs/playwright-report
+          
+      - name: Commit and push report
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -f docs/playwright-report
+          git commit -m "Update Playwright report" || echo "No changes to commit"
+          git push
         
