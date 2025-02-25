@@ -577,16 +577,16 @@
                         const testResults = [];
                         const lines = logs.split('\n');
                         for (const line of lines) {
-                            // Ищем строки с результатами тестов (они обычно начинаются с ✓ или ×)
-                            if (line.includes('✓') || line.includes('×')) {
-                                const isSuccess = line.includes('✓');
-                                const testName = line.replace(/^.*?(✓|×)\s*/, '').split(' (')[0];
-                                const duration = line.match(/\(([^)]+)\)/)?.[1] || '';
-                                
+                            // Ищем строки с тестами и извлекаем только название и продолжительность
+                            const match = line.match(/✓\s+\d+\s+\[chromium\]\s+›\s+[^›]+›\s+([^(]+)\s*\(([^)]+)\)/);
+                            if (match) {
+                                const fullName = match[1].trim();
+                                // Берем только название теста после последнего "›"
+                                const testName = fullName.split('›').pop().trim();
                                 testResults.push({
                                     name: testName,
-                                    status: isSuccess ? 'success' : 'error',
-                                    duration: duration
+                                    duration: match[2],
+                                    status: 'success'
                                 });
                             }
                         }
