@@ -88,24 +88,15 @@ jobs:
         name: running-log
         path: test-results/running-log.txt
 
-    - name: Copy report and artifacts to docs
+    - name: Copy report to docs
       if: always()
       run: |
         # Очищаем старый отчет
         rm -rf docs/playwright-report
         
-        # Копируем основной отчет
-        mkdir -p docs/playwright-report
-        cp -r playwright-report/* docs/playwright-report/
-        
-        # Копируем все артефакты с сохранением структуры
-        if [ -d "test-results" ]; then
-          find test-results -type f -exec bash -c '
-            mkdir -p "docs/playwright-report/$(dirname "{}")"
-            cp "{}" "docs/playwright-report/{}"
-          ' \;
-        fi
-        
+        # Копируем весь отчет с сохранением структуры
+        cp -r playwright-report docs/
+
     - name: Push changes
       if: always()
       uses: stefanzweifel/git-auto-commit-action@v5

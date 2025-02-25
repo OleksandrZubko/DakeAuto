@@ -514,6 +514,13 @@
             flex-direction: column;
             z-index: 1000;
             transition: opacity 0.5s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .blur-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .timer {
@@ -961,7 +968,16 @@
             const timerDisplay = document.getElementById('timer');
             const overlay = document.getElementById('blur-overlay');
 
+            overlay.classList.add('visible');
+
             const timer = setInterval(() => {
+                // Проверяем наличие отчета
+                if (checkForReport()) {
+                    clearInterval(timer);
+                    overlay.classList.remove('visible');
+                    return;
+                }
+
                 const minutes = Math.floor(duration / 60);
                 const seconds = duration % 60;
 
@@ -969,13 +985,41 @@
 
                 if (--duration < 0) {
                     clearInterval(timer);
-                    overlay.classList.add('hidden');
+                    overlay.classList.remove('visible');
                 }
             }, 1000);
         }
 
-        // Start timer when page loads
-        document.addEventListener('DOMContentLoaded', startTimer);
+        function playBeep() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.type = 'sine';
+            oscillator.frequency.value = 800;
+            gainNode.gain.value = 0.1;
+
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        function checkForReport() {
+            const reportButton = document.querySelector('a[href="playwright-report/index.html"]');
+            return reportButton !== null;
+        }
+
+        // Добавляем обработчики для кнопок окружения
+        document.addEventListener('DOMContentLoaded', () => {
+            const envButtons = document.querySelectorAll('button[id$="Environment"]');
+            envButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    startTimer();
+                });
+            });
+        });
     </script>
 </body>
 </html>  
