@@ -971,13 +971,6 @@
             overlay.classList.add('visible');
 
             const timer = setInterval(() => {
-                // Проверяем наличие отчета
-                if (checkForReport()) {
-                    clearInterval(timer);
-                    overlay.classList.remove('visible');
-                    return;
-                }
-
                 const minutes = Math.floor(duration / 60);
                 const seconds = duration % 60;
 
@@ -986,6 +979,7 @@
                 if (--duration < 0) {
                     clearInterval(timer);
                     overlay.classList.remove('visible');
+                    playBeep();
                 }
             }, 1000);
         }
@@ -1012,10 +1006,16 @@
         }
 
         // Добавляем обработчики для кнопок окружения
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Находим все кнопки окружений
             const envButtons = document.querySelectorAll('button[id$="Environment"]');
+            
+            // Добавляем обработчик для каждой кнопки
             envButtons.forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', function() {
+                    // Показываем блюр и запускаем таймер
+                    const overlay = document.getElementById('blur-overlay');
+                    overlay.classList.add('visible');
                     startTimer();
                 });
             });
