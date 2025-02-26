@@ -543,6 +543,17 @@
     </style>
 </head>
 <body>
+    <div id="status" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        border-radius: 4px;
+        font-size: 14px;
+    "></div>
+
     <div id="blur-overlay" class="blur-overlay">
         <div id="timer" class="timer">07:00</div>
         <div class="timer-text">Running tests, please wait...</div>
@@ -982,6 +993,13 @@
                 });
             });
         });
+
+        function updateStatus(message) {
+            const statusElement = document.getElementById('status');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
     </script>
 </body>
 </html>  
