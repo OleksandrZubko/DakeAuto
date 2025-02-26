@@ -964,11 +964,10 @@
         }
 
         function startTimer() {
+            console.log('Timer started'); // Для отладки
             let duration = 7 * 60; // 7 minutes in seconds
             const timerDisplay = document.getElementById('timer');
             const overlay = document.getElementById('blur-overlay');
-
-            overlay.classList.add('visible');
 
             const timer = setInterval(() => {
                 const minutes = Math.floor(duration / 60);
@@ -1007,17 +1006,15 @@
 
         // Добавляем обработчики для кнопок окружения
         document.addEventListener('DOMContentLoaded', function() {
-            // Находим все кнопки окружений
-            const envButtons = document.querySelectorAll('button[id$="Environment"]');
-            
-            // Добавляем обработчик для каждой кнопки
-            envButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Показываем блюр и запускаем таймер
+            // Используем делегирование событий через document
+            document.addEventListener('click', function(event) {
+                // Проверяем, что клик был по кнопке окружения
+                if (event.target.matches('button[id$="Environment"]')) {
+                    console.log('Environment button clicked'); // Для отладки
                     const overlay = document.getElementById('blur-overlay');
                     overlay.classList.add('visible');
                     startTimer();
-                });
+                }
             });
         });
     </script>
