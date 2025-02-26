@@ -963,9 +963,36 @@
             document.getElementById('test-section').classList.add('hidden');
         }
 
+        // Создаем MutationObserver для отслеживания изменений в DOM
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    // Проверяем появление текста о запуске тестов
+                    const runningText = document.querySelector('h2:contains("Running tests on")');
+                    // Или проверяем появление черного фона со статусами
+                    const testStatus = document.querySelector('.status-line');
+                    
+                    if (runningText || testStatus) {
+                        console.log('Tests started, showing blur'); // Для отладки
+                        const overlay = document.getElementById('blur-overlay');
+                        overlay.classList.add('visible');
+                        startTimer();
+                        // Останавливаем наблюдение, так как блюр уже показан
+                        observer.disconnect();
+                    }
+                }
+            });
+        });
+
+        // Начинаем наблюдение за изменениями в DOM
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
         function startTimer() {
             console.log('Timer started'); // Для отладки
-            let duration = 7 * 60; // 7 minutes in seconds
+            let duration = 7 * 60;
             const timerDisplay = document.getElementById('timer');
             const overlay = document.getElementById('blur-overlay');
 
