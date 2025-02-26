@@ -967,17 +967,20 @@
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList') {
-                    // Проверяем появление текста о запуске тестов
-                    const runningText = document.querySelector('h2:contains("Running tests on")');
-                    // Или проверяем появление черного фона со статусами
-                    const testStatus = document.querySelector('.status-line');
+                    // Ищем элемент с текстом о запуске тестов
+                    const runningTests = Array.from(document.getElementsByTagName('h2')).find(
+                        element => element.textContent.includes('Running tests on')
+                    );
                     
-                    if (runningText || testStatus) {
+                    // Или ищем черный фон со статусами
+                    const statusElement = document.querySelector('.status-line, .status-container');
+                    
+                    if (runningTests || statusElement) {
                         console.log('Tests started, showing blur'); // Для отладки
                         const overlay = document.getElementById('blur-overlay');
                         overlay.classList.add('visible');
                         startTimer();
-                        // Останавливаем наблюдение, так как блюр уже показан
+                        // Останавливаем наблюдение
                         observer.disconnect();
                     }
                 }
