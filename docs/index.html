@@ -963,6 +963,33 @@
             document.getElementById('test-section').classList.add('hidden');
         }
 
+        function startTimer() {
+            console.log('Timer started');
+            let duration = 7 * 60;
+            const timerDisplay = document.getElementById('timer');
+            const overlay = document.getElementById('blur-overlay');
+
+            const startTime = performance.now();
+            const endTime = startTime + (duration * 1000);
+
+            const timer = setInterval(() => {
+                const currentTime = performance.now();
+                const remainingTime = Math.max(0, endTime - currentTime);
+                const remainingSeconds = Math.ceil(remainingTime / 1000);
+                
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (remainingTime <= 0) {
+                    clearInterval(timer);
+                    overlay.classList.remove('visible');
+                    playBeep();
+                }
+            }, 100);
+        }
+
         // Создаем MutationObserver для отслеживания изменений в DOM
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -973,16 +1000,19 @@
                         // Проверяем содержимое на наличие нужного текста
                         const content = node.textContent || node.innerText;
                         if (content && content.includes('Running tests on')) {
-                            console.log('Found running tests text'); // Для отладки
+                            console.log('Found running tests text');
                             const overlay = document.getElementById('blur-overlay');
                             overlay.classList.add('visible');
-                            startTimer();
+                            window.startTimer();
                             observer.disconnect();
                         }
                     }
                 });
             });
         });
+
+        // Добавляем функцию в глобальную область видимости
+        window.startTimer = startTimer;
 
         // Начинаем наблюдение за всем документом
         observer.observe(document.body, {
