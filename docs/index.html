@@ -723,17 +723,12 @@
         }
 
         async function runTests(environment) {
+            // Показываем блюр и запускаем таймер сразу после клика
             const overlay = document.getElementById('blur-overlay');
             overlay.classList.add('visible');
             startTimer();
 
-            // Запускаем проверку наличия отчета каждые 5 секунд
-            const checkInterval = setInterval(() => {
-                if (checkForReport()) {
-                    clearInterval(checkInterval);
-                }
-            }, 5000);
-
+            // Запускаем тесты
             try {
                 const response = await fetch(
                     `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflowId}/dispatches`,
@@ -752,16 +747,16 @@
                 );
                 
                 if (!response.ok) {
-                    clearInterval(checkInterval);
                     throw new Error('Network response was not ok');
                 }
                 
+                // Обновляем статус
                 updateStatus('Tests started...');
             } catch (error) {
                 console.error('Error:', error);
                 updateStatus('Error starting tests');
+                // Убираем блюр если произошла ошибка
                 overlay.classList.remove('visible');
-                clearInterval(checkInterval);
             }
         }
 
@@ -964,13 +959,7 @@
 
         function checkForReport() {
             const reportButton = document.querySelector('a[href="playwright-report/index.html"]');
-            if (reportButton) {
-                const overlay = document.getElementById('blur-overlay');
-                overlay.classList.remove('visible');
-                playBeep();
-                return true;
-            }
-            return false;
+            return reportButton !== null;
         }
 
         // Добавляем обработчики для кнопок окружения
