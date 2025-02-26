@@ -48,12 +48,12 @@ jobs:
         echo "BASE_URL will be: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}"
 
     - name: Run Playwright tests
+      env:
+        BASE_URL: ${{ secrets[format('BASE_URL_{0}', github.event.inputs.environment || 'PROD')] }}
       run: |
         mkdir -p test-results
         echo "Current BASE_URL value: $BASE_URL"
         npx playwright test tests/example.spec.js --reporter=list,html | tee test-results/running-log.txt
-      env:
-        BASE_URL: ${{ github.event.inputs.environment == 'dev' && secrets.BASE_URL_DEV || github.event.inputs.environment == 'stage' && secrets.BASE_URL_STAGE || secrets.BASE_URL_PROD }}
 
     - name: Save logs
       if: always()
@@ -103,6 +103,7 @@ jobs:
       with:
         commit_message: Update Playwright report and logs
         file_pattern: 'docs/**/*'
+        push_options: '--force'
         branch: ${{ github.head_ref || github.ref_name }}
 
   deploy-report:
