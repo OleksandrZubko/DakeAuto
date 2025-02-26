@@ -992,23 +992,30 @@
         });
 
         function startTimer() {
-            console.log('Timer started'); // Для отладки
-            let duration = 7 * 60;
+            console.log('Timer started');
+            const duration = 7 * 60; // 7 minutes in seconds
             const timerDisplay = document.getElementById('timer');
             const overlay = document.getElementById('blur-overlay');
+            
+            const startTime = performance.now();
+            const endTime = startTime + (duration * 1000); // Convert to milliseconds
 
             const timer = setInterval(() => {
-                const minutes = Math.floor(duration / 60);
-                const seconds = duration % 60;
+                const currentTime = performance.now();
+                const remainingTime = Math.max(0, endTime - currentTime);
+                const remainingSeconds = Math.ceil(remainingTime / 1000);
+                
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
 
                 timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-                if (--duration < 0) {
+                if (remainingTime <= 0) {
                     clearInterval(timer);
                     overlay.classList.remove('visible');
                     playBeep();
                 }
-            }, 1000);
+            }, 100); // Update more frequently to ensure smooth countdown
         }
 
         function playBeep() {
