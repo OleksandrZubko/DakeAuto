@@ -991,33 +991,6 @@
             characterData: true
         });
 
-        function startTimer() {
-            console.log('Timer started');
-            const duration = 7 * 60; // 7 minutes in seconds
-            const timerDisplay = document.getElementById('timer');
-            const overlay = document.getElementById('blur-overlay');
-            
-            const startTime = performance.now();
-            const endTime = startTime + (duration * 1000); // Convert to milliseconds
-
-            const timer = setInterval(() => {
-                const currentTime = performance.now();
-                const remainingTime = Math.max(0, endTime - currentTime);
-                const remainingSeconds = Math.ceil(remainingTime / 1000);
-                
-                const minutes = Math.floor(remainingSeconds / 60);
-                const seconds = remainingSeconds % 60;
-
-                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                if (remainingTime <= 0) {
-                    clearInterval(timer);
-                    overlay.classList.remove('visible');
-                    playBeep();
-                }
-            }, 100); // Update more frequently to ensure smooth countdown
-        }
-
         function playBeep() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
@@ -1026,12 +999,23 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
 
+            // Настраиваем звук
             oscillator.type = 'sine';
-            oscillator.frequency.value = 800;
-            gainNode.gain.value = 0.1;
+            oscillator.frequency.value = 880; // Нота A5
 
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.1);
+            // Настраиваем громкость
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.1);
+            gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 2.9);
+            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 3);
+
+            // Запускаем звук
+            oscillator.start(audioContext.currentTime);
+            
+            // Останавливаем через 3 секунды
+            oscillator.stop(audioContext.currentTime + 3);
+
+            console.log('Sound started'); // Для отладки
         }
 
         function checkForReport() {
