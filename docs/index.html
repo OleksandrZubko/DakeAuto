@@ -966,31 +966,29 @@
         // Создаем MutationObserver для отслеживания изменений в DOM
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
-                if (mutation.type === 'childList') {
-                    // Ищем элемент с текстом о запуске тестов
-                    const runningTests = Array.from(document.getElementsByTagName('h2')).find(
-                        element => element.textContent.includes('Running tests on')
-                    );
-                    
-                    // Или ищем черный фон со статусами
-                    const statusElement = document.querySelector('.status-line, .status-container');
-                    
-                    if (runningTests || statusElement) {
-                        console.log('Tests started, showing blur'); // Для отладки
-                        const overlay = document.getElementById('blur-overlay');
-                        overlay.classList.add('visible');
-                        startTimer();
-                        // Останавливаем наблюдение
-                        observer.disconnect();
+                // Проверяем все добавленные узлы
+                mutation.addedNodes.forEach((node) => {
+                    // Проверяем, является ли узел текстовым
+                    if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
+                        // Проверяем содержимое на наличие нужного текста
+                        const content = node.textContent || node.innerText;
+                        if (content && content.includes('Running tests on')) {
+                            console.log('Found running tests text'); // Для отладки
+                            const overlay = document.getElementById('blur-overlay');
+                            overlay.classList.add('visible');
+                            startTimer();
+                            observer.disconnect();
+                        }
                     }
-                }
+                });
             });
         });
 
-        // Начинаем наблюдение за изменениями в DOM
+        // Начинаем наблюдение за всем документом
         observer.observe(document.body, {
             childList: true,
-            subtree: true
+            subtree: true,
+            characterData: true
         });
 
         function startTimer() {
