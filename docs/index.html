@@ -588,6 +588,9 @@
         let statusElement;
         let linkElement;
         let output;
+        const owner = 'OleksandrZubko';
+        const repo = 'DakeAuto';
+        const workflowId = 'playwright.yml';
 
         async function checkStatus() {
             try {
@@ -734,9 +737,17 @@
         }
 
         async function runTests(environment) {
+            updateStatus('Starting tests...');
             const overlay = document.getElementById('blur-overlay');
             overlay.classList.add('visible');
             startTimer();
+
+            const apiToken = document.getElementById('token-input').value;
+            if (!apiToken) {
+                updateStatus('GitHub token is required');
+                overlay.classList.remove('visible');
+                return;
+            }
 
             // Запускаем проверку наличия отчета каждые 5 секунд
             const checkInterval = setInterval(() => {
@@ -767,7 +778,7 @@
                     throw new Error('Network response was not ok');
                 }
                 
-                updateStatus('Tests started...');
+                updateStatus('Tests running...');
             } catch (error) {
                 console.error('Error:', error);
                 updateStatus('Error starting tests');
