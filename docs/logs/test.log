@@ -17,7 +17,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  1 [chromium] › tests/example.spec.js:39:5 › Login (189ms)
+  ✘  1 [chromium] › tests/example.spec.js:39:5 › Login (202ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:40:9
@@ -26,6 +26,9 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
@@ -50,22 +53,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  3 [chromium] › tests/example.spec.js:39:5 › Login (retry #2) (187ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:45:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  4 [chromium] › tests/example.spec.js:44:5 › Statistic (191ms)
+  ✘  3 [chromium] › tests/example.spec.js:39:5 › Login (retry #2) (192ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:45:9
@@ -83,7 +71,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  5 [chromium] › tests/example.spec.js:44:5 › Statistic (retry #1) (195ms)
+  ✘  4 [chromium] › tests/example.spec.js:44:5 › Statistic (205ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:45:9
@@ -101,7 +89,25 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  6 [chromium] › tests/example.spec.js:44:5 › Statistic (retry #2) (201ms)
+  ✘  5 [chromium] › tests/example.spec.js:44:5 › Statistic (retry #1) (199ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:45:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  6 [chromium] › tests/example.spec.js:44:5 › Statistic (retry #2) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:58:9
@@ -119,7 +125,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  7 [chromium] › tests/example.spec.js:57:5 › Users (191ms)
+  ✘  7 [chromium] › tests/example.spec.js:57:5 › Users (201ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:58:9
@@ -128,13 +134,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  8 [chromium] › tests/example.spec.js:57:5 › Users (retry #1) (195ms)
+  ✘  8 [chromium] › tests/example.spec.js:57:5 › Users (retry #1) (205ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:58:9
@@ -143,13 +152,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  9 [chromium] › tests/example.spec.js:57:5 › Users (retry #2) (204ms)
+  ✘  9 [chromium] › tests/example.spec.js:57:5 › Users (retry #2) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:75:9
@@ -182,7 +194,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  11 [chromium] › tests/example.spec.js:74:5 › Block Credentials (retry #1) (193ms)
+  ✘  11 [chromium] › tests/example.spec.js:74:5 › Block Credentials (retry #1) (199ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:75:9
@@ -200,7 +212,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  12 [chromium] › tests/example.spec.js:74:5 › Block Credentials (retry #2) (194ms)
+  ✘  12 [chromium] › tests/example.spec.js:74:5 › Block Credentials (retry #2) (197ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:92:9
@@ -218,7 +230,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  13 [chromium] › tests/example.spec.js:91:5 › Sessions (196ms)
+  ✘  13 [chromium] › tests/example.spec.js:91:5 › Sessions (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:92:9
@@ -236,7 +248,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  14 [chromium] › tests/example.spec.js:91:5 › Sessions (retry #1) (181ms)
+  ✘  14 [chromium] › tests/example.spec.js:91:5 › Sessions (retry #1) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:92:9
@@ -254,7 +266,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  15 [chromium] › tests/example.spec.js:91:5 › Sessions (retry #2) (187ms)
+  ✘  15 [chromium] › tests/example.spec.js:91:5 › Sessions (retry #2) (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:109:9
@@ -272,7 +284,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  16 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (192ms)
+  ✘  16 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (186ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:109:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  17 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (retry #1) (199ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:109:9
@@ -290,25 +317,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  17 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (retry #1) (192ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:109:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  18 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (retry #2) (186ms)
+  ✘  18 [chromium] › tests/example.spec.js:108:5 › Advertising Statistics (retry #2) (191ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:126:11
@@ -326,22 +335,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  19 [chromium] › tests/example.spec.js:125:5 › Ban by balance (188ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:126:11
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  20 [chromium] › tests/example.spec.js:125:5 › Ban by balance (retry #1) (178ms)
+  ✘  19 [chromium] › tests/example.spec.js:125:5 › Ban by balance (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:126:11
@@ -359,7 +353,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  21 [chromium] › tests/example.spec.js:125:5 › Ban by balance (retry #2) (200ms)
+  ✘  20 [chromium] › tests/example.spec.js:125:5 › Ban by balance (retry #1) (196ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:126:11
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  21 [chromium] › tests/example.spec.js:125:5 › Ban by balance (retry #2) (187ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:136:11
@@ -374,7 +383,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  22 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (198ms)
+  ✘  22 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:136:11
@@ -392,7 +401,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  23 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (retry #1) (181ms)
+  ✘  23 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (retry #1) (192ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:136:11
@@ -410,40 +419,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  24 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (retry #2) (187ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:146:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  25 [chromium] › tests/example.spec.js:145:5 › Data Statistic (191ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:146:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  26 [chromium] › tests/example.spec.js:145:5 › Data Statistic (retry #1) (197ms)
+  ✘  24 [chromium] › tests/example.spec.js:135:5 › Management Payment Provider (retry #2) (182ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:146:9
@@ -461,7 +437,43 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  27 [chromium] › tests/example.spec.js:145:5 › Data Statistic (retry #2) (189ms)
+  ✘  25 [chromium] › tests/example.spec.js:145:5 › Data Statistic (193ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:146:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  26 [chromium] › tests/example.spec.js:145:5 › Data Statistic (retry #1) (213ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:146:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  27 [chromium] › tests/example.spec.js:145:5 › Data Statistic (retry #2) (207ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:163:9
@@ -479,7 +491,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  28 [chromium] › tests/example.spec.js:162:5 › Distribution Data (186ms)
+  ✘  28 [chromium] › tests/example.spec.js:162:5 › Distribution Data (191ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:163:9
@@ -497,7 +509,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  29 [chromium] › tests/example.spec.js:162:5 › Distribution Data (retry #1) (195ms)
+  ✘  29 [chromium] › tests/example.spec.js:162:5 › Distribution Data (retry #1) (202ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:163:9
@@ -506,13 +518,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  30 [chromium] › tests/example.spec.js:162:5 › Distribution Data (retry #2) (195ms)
+  ✘  30 [chromium] › tests/example.spec.js:162:5 › Distribution Data (retry #2) (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:180:9
@@ -530,7 +545,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  31 [chromium] › tests/example.spec.js:179:5 › Distribution (180ms)
+  ✘  31 [chromium] › tests/example.spec.js:179:5 › Distribution (190ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:180:9
@@ -548,7 +563,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  32 [chromium] › tests/example.spec.js:179:5 › Distribution (retry #1) (182ms)
+  ✘  32 [chromium] › tests/example.spec.js:179:5 › Distribution (retry #1) (189ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:180:9
@@ -566,22 +581,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  33 [chromium] › tests/example.spec.js:179:5 › Distribution (retry #2) (194ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:197:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  34 [chromium] › tests/example.spec.js:196:5 › Banners (183ms)
+  ✘  33 [chromium] › tests/example.spec.js:179:5 › Distribution (retry #2) (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:197:9
@@ -599,7 +599,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  35 [chromium] › tests/example.spec.js:196:5 › Banners (retry #1) (182ms)
+  ✘  34 [chromium] › tests/example.spec.js:196:5 › Banners (186ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:197:9
@@ -608,16 +608,28 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  36 [chromium] › tests/example.spec.js:196:5 › Banners (retry #2) (186ms)
+  ✘  35 [chromium] › tests/example.spec.js:196:5 › Banners (retry #1) (203ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:197:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  36 [chromium] › tests/example.spec.js:196:5 › Banners (retry #2) (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:214:9
@@ -635,7 +647,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  37 [chromium] › tests/example.spec.js:213:5 › FAQ (190ms)
+  ✘  37 [chromium] › tests/example.spec.js:213:5 › FAQ (201ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:214:9
@@ -653,7 +665,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  38 [chromium] › tests/example.spec.js:213:5 › FAQ (retry #1) (183ms)
+  ✘  38 [chromium] › tests/example.spec.js:213:5 › FAQ (retry #1) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:214:9
@@ -662,13 +674,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  39 [chromium] › tests/example.spec.js:213:5 › FAQ (retry #2) (186ms)
+  ✘  39 [chromium] › tests/example.spec.js:213:5 › FAQ (retry #2) (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:231:9
@@ -686,7 +701,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  40 [chromium] › tests/example.spec.js:230:5 › Email Templates (188ms)
+  ✘  40 [chromium] › tests/example.spec.js:230:5 › Email Templates (193ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:231:9
@@ -704,7 +719,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  41 [chromium] › tests/example.spec.js:230:5 › Email Templates (retry #1) (190ms)
+  ✘  41 [chromium] › tests/example.spec.js:230:5 › Email Templates (retry #1) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:231:9
@@ -722,7 +737,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  42 [chromium] › tests/example.spec.js:230:5 › Email Templates (retry #2) (194ms)
+  ✘  42 [chromium] › tests/example.spec.js:230:5 › Email Templates (retry #2) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:248:9
@@ -740,7 +755,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  43 [chromium] › tests/example.spec.js:247:5 › Deposits (183ms)
+  ✘  43 [chromium] › tests/example.spec.js:247:5 › Deposits (187ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:248:9
@@ -758,7 +773,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  44 [chromium] › tests/example.spec.js:247:5 › Deposits (retry #1) (195ms)
+  ✘  44 [chromium] › tests/example.spec.js:247:5 › Deposits (retry #1) (186ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:248:9
@@ -776,7 +791,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  45 [chromium] › tests/example.spec.js:247:5 › Deposits (retry #2) (182ms)
+  ✘  45 [chromium] › tests/example.spec.js:247:5 › Deposits (retry #2) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:265:9
@@ -794,7 +809,25 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  46 [chromium] › tests/example.spec.js:264:5 › Operations (192ms)
+  ✘  46 [chromium] › tests/example.spec.js:264:5 › Operations (206ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:265:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  47 [chromium] › tests/example.spec.js:264:5 › Operations (retry #1) (197ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:265:9
@@ -809,10 +842,10 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  47 [chromium] › tests/example.spec.js:264:5 › Operations (retry #1) (186ms)
+  ✘  48 [chromium] › tests/example.spec.js:264:5 › Operations (retry #2) (201ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:265:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:282:9
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
@@ -824,7 +857,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  48 [chromium] › tests/example.spec.js:264:5 › Operations (retry #2) (191ms)
+  ✘  49 [chromium] › tests/example.spec.js:281:5 › KYC (188ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:282:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  50 [chromium] › tests/example.spec.js:281:5 › KYC (retry #1) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:282:9
@@ -842,40 +890,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  49 [chromium] › tests/example.spec.js:281:5 › KYC (185ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:282:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  50 [chromium] › tests/example.spec.js:281:5 › KYC (retry #1) (188ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:282:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  51 [chromium] › tests/example.spec.js:281:5 › KYC (retry #2) (185ms)
+  ✘  51 [chromium] › tests/example.spec.js:281:5 › KYC (retry #2) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:299:9
@@ -893,7 +908,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  52 [chromium] › tests/example.spec.js:298:5 › Withdraw (191ms)
+  ✘  52 [chromium] › tests/example.spec.js:298:5 › Withdraw (190ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:299:9
@@ -911,7 +926,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  53 [chromium] › tests/example.spec.js:298:5 › Withdraw (retry #1) (190ms)
+  ✘  53 [chromium] › tests/example.spec.js:298:5 › Withdraw (retry #1) (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:299:9
@@ -920,16 +935,13 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  54 [chromium] › tests/example.spec.js:298:5 › Withdraw (retry #2) (190ms)
+  ✘  54 [chromium] › tests/example.spec.js:298:5 › Withdraw (retry #2) (186ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:316:9
@@ -965,7 +977,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  56 [chromium] › tests/example.spec.js:315:5 › Slots (retry #1) (190ms)
+  ✘  56 [chromium] › tests/example.spec.js:315:5 › Slots (retry #1) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:316:9
@@ -980,7 +992,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  57 [chromium] › tests/example.spec.js:315:5 › Slots (retry #2) (193ms)
+  ✘  57 [chromium] › tests/example.spec.js:315:5 › Slots (retry #2) (210ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:334:9
@@ -1016,7 +1028,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  59 [chromium] › tests/example.spec.js:333:5 › Top Games (retry #1) (180ms)
+  ✘  59 [chromium] › tests/example.spec.js:333:5 › Top Games (retry #1) (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:334:9
@@ -1025,13 +1037,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  60 [chromium] › tests/example.spec.js:333:5 › Top Games (retry #2) (184ms)
+  ✘  60 [chromium] › tests/example.spec.js:333:5 › Top Games (retry #2) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:353:9
@@ -1049,7 +1064,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  61 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (181ms)
+  ✘  61 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (192ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:353:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  62 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (retry #1) (187ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:353:9
@@ -1067,25 +1097,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  62 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (retry #1) (196ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:353:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  63 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (retry #2) (185ms)
+  ✘  63 [chromium] › tests/example.spec.js:352:5 › Put Games into Group (retry #2) (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:375:9
@@ -1103,7 +1115,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  64 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (197ms)
+  ✘  64 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (204ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:375:9
@@ -1118,7 +1130,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  65 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (retry #1) (193ms)
+  ✘  65 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (retry #1) (189ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:375:9
@@ -1127,13 +1139,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  66 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (retry #2) (191ms)
+  ✘  66 [chromium] › tests/example.spec.js:374:5 › Put Provider into Group (retry #2) (189ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:394:9
@@ -1151,7 +1166,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  67 [chromium] › tests/example.spec.js:393:5 › Block Slots (187ms)
+  ✘  67 [chromium] › tests/example.spec.js:393:5 › Block Slots (186ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:394:9
@@ -1169,7 +1184,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  68 [chromium] › tests/example.spec.js:393:5 › Block Slots (retry #1) (194ms)
+  ✘  68 [chromium] › tests/example.spec.js:393:5 › Block Slots (retry #1) (202ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:394:9
@@ -1187,7 +1202,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  69 [chromium] › tests/example.spec.js:393:5 › Block Slots (retry #2) (183ms)
+  ✘  69 [chromium] › tests/example.spec.js:393:5 › Block Slots (retry #2) (186ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:413:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  70 [chromium] › tests/example.spec.js:412:5 › Reloads (193ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:413:9
@@ -1205,7 +1235,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  70 [chromium] › tests/example.spec.js:412:5 › Reloads (187ms)
+  ✘  71 [chromium] › tests/example.spec.js:412:5 › Reloads (retry #1) (183ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:413:9
@@ -1223,25 +1253,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  71 [chromium] › tests/example.spec.js:412:5 › Reloads (retry #1) (195ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:413:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  72 [chromium] › tests/example.spec.js:412:5 › Reloads (retry #2) (185ms)
+  ✘  72 [chromium] › tests/example.spec.js:412:5 › Reloads (retry #2) (192ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:432:9
@@ -1259,7 +1271,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  73 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (188ms)
+  ✘  73 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (187ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:432:9
@@ -1274,7 +1286,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  74 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (retry #1) (182ms)
+  ✘  74 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (retry #1) (191ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:432:9
@@ -1292,7 +1304,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  75 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (retry #2) (201ms)
+  ✘  75 [chromium] › tests/example.spec.js:431:5 › Reloads & Users (retry #2) (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:450:9
@@ -1310,7 +1322,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  76 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (193ms)
+  ✘  76 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:450:9
@@ -1328,7 +1340,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  77 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (retry #1) (188ms)
+  ✘  77 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (retry #1) (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:450:9
@@ -1343,7 +1355,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  78 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (retry #2) (191ms)
+  ✘  78 [chromium] › tests/example.spec.js:449:5 › List of Questions with Answers (retry #2) (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:467:9
@@ -1361,22 +1373,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  79 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (186ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:467:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  80 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (retry #1) (185ms)
+  ✘  79 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:467:9
@@ -1394,7 +1391,25 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  81 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (retry #2) (196ms)
+  ✘  80 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (retry #1) (191ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:467:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  81 [chromium] › tests/example.spec.js:466:5 › List of Questionnaires (retry #2) (199ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:484:9
@@ -1412,7 +1427,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  82 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (204ms)
+  ✘  82 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (199ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:484:9
@@ -1421,13 +1436,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  83 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (retry #1) (190ms)
+  ✘  83 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (retry #1) (209ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:484:9
@@ -1436,13 +1454,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  84 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (retry #2) (188ms)
+  ✘  84 [chromium] › tests/example.spec.js:483:5 › List of Bonus Questionnaires (retry #2) (193ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:498:9
@@ -1460,7 +1481,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  85 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (179ms)
+  ✘  85 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (193ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:498:9
@@ -1478,7 +1499,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  86 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (retry #1) (181ms)
+  ✘  86 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (retry #1) (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:498:9
@@ -1496,7 +1517,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  87 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (retry #2) (194ms)
+  ✘  87 [chromium] › tests/example.spec.js:497:5 › List of Promocodes (retry #2) (205ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:515:9
@@ -1514,7 +1535,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  88 [chromium] › tests/example.spec.js:514:5 › All Bonuses (187ms)
+  ✘  88 [chromium] › tests/example.spec.js:514:5 › All Bonuses (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:515:9
@@ -1532,7 +1553,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  89 [chromium] › tests/example.spec.js:514:5 › All Bonuses (retry #1) (184ms)
+  ✘  89 [chromium] › tests/example.spec.js:514:5 › All Bonuses (retry #1) (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:515:9
@@ -1541,13 +1562,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  90 [chromium] › tests/example.spec.js:514:5 › All Bonuses (retry #2) (195ms)
+  ✘  90 [chromium] › tests/example.spec.js:514:5 › All Bonuses (retry #2) (202ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:532:9
@@ -1565,7 +1589,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  91 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (192ms)
+  ✘  91 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:532:9
@@ -1583,7 +1607,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  92 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (retry #1) (250ms)
+  ✘  92 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (retry #1) (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:532:9
@@ -1592,13 +1616,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  93 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (retry #2) (188ms)
+  ✘  93 [chromium] › tests/example.spec.js:531:5 › Campaign Bonuses (retry #2) (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:549:9
@@ -1616,7 +1643,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  94 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (191ms)
+  ✘  94 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (209ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:549:9
@@ -1634,7 +1661,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  95 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (retry #1) (180ms)
+  ✘  95 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (retry #1) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:549:9
@@ -1652,7 +1679,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  96 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (retry #2) (192ms)
+  ✘  96 [chromium] › tests/example.spec.js:548:5 › Additional Bonuses (retry #2) (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:562:9
@@ -1670,7 +1697,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  97 [chromium] › tests/example.spec.js:561:5 › User & Additional (184ms)
+  ✘  97 [chromium] › tests/example.spec.js:561:5 › User & Additional (196ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:562:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  98 [chromium] › tests/example.spec.js:561:5 › User & Additional (retry #1) (194ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:562:9
@@ -1688,40 +1730,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  98 [chromium] › tests/example.spec.js:561:5 › User & Additional (retry #1) (200ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:562:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  99 [chromium] › tests/example.spec.js:561:5 › User & Additional (retry #2) (194ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:579:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  100 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (186ms)
+  ✘  99 [chromium] › tests/example.spec.js:561:5 › User & Additional (retry #2) (191ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:579:9
@@ -1739,7 +1748,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  101 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (retry #1) (193ms)
+  ✘  100 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:579:9
@@ -1757,7 +1766,25 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  102 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (retry #2) (199ms)
+  ✘  101 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (retry #1) (191ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:579:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  102 [chromium] › tests/example.spec.js:578:5 › List of Daily Bonus (retry #2) (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:596:9
@@ -1775,7 +1802,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  103 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (189ms)
+  ✘  103 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (213ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:596:9
@@ -1793,7 +1820,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  104 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (retry #1) (212ms)
+  ✘  104 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (retry #1) (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:596:9
@@ -1802,13 +1829,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  105 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (retry #2) (188ms)
+  ✘  105 [chromium] › tests/example.spec.js:595:5 › Managment Additional Bonus (retry #2) (206ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:613:9
@@ -1826,7 +1856,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  106 [chromium] › tests/example.spec.js:612:5 › Tech Work (189ms)
+  ✘  106 [chromium] › tests/example.spec.js:612:5 › Tech Work (195ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:613:9
@@ -1844,7 +1874,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  107 [chromium] › tests/example.spec.js:612:5 › Tech Work (retry #1) (199ms)
+  ✘  107 [chromium] › tests/example.spec.js:612:5 › Tech Work (retry #1) (203ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:613:9
@@ -1853,13 +1883,16 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  108 [chromium] › tests/example.spec.js:612:5 › Tech Work (retry #2) (191ms)
+  ✘  108 [chromium] › tests/example.spec.js:612:5 › Tech Work (retry #2) (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:630:9
@@ -1877,25 +1910,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  109 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (206ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:630:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  110 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (retry #1) (192ms)
+  ✘  109 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (201ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:630:9
@@ -1910,7 +1925,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  111 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (retry #2) (194ms)
+  ✘  110 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (retry #1) (197ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:630:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  111 [chromium] › tests/example.spec.js:629:5 › Dake Mail SMTP (retry #2) (189ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:647:9
@@ -1928,7 +1958,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  112 [chromium] › tests/example.spec.js:646:5 › Country Blocker (195ms)
+  ✘  112 [chromium] › tests/example.spec.js:646:5 › Country Blocker (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:647:9
@@ -1946,7 +1976,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  113 [chromium] › tests/example.spec.js:646:5 › Country Blocker (retry #1) (187ms)
+  ✘  113 [chromium] › tests/example.spec.js:646:5 › Country Blocker (retry #1) (191ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:647:9
@@ -1955,16 +1985,13 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  114 [chromium] › tests/example.spec.js:646:5 › Country Blocker (retry #2) (196ms)
+  ✘  114 [chromium] › tests/example.spec.js:646:5 › Country Blocker (retry #2) (205ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:664:9
@@ -1982,7 +2009,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  115 [chromium] › tests/example.spec.js:663:5 › PayPro Account (196ms)
+  ✘  115 [chromium] › tests/example.spec.js:663:5 › PayPro Account (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:664:9
@@ -2000,7 +2027,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  116 [chromium] › tests/example.spec.js:663:5 › PayPro Account (retry #1) (194ms)
+  ✘  116 [chromium] › tests/example.spec.js:663:5 › PayPro Account (retry #1) (200ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:664:9
@@ -2018,7 +2045,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  117 [chromium] › tests/example.spec.js:663:5 › PayPro Account (retry #2) (190ms)
+  ✘  117 [chromium] › tests/example.spec.js:663:5 › PayPro Account (retry #2) (193ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:681:9
@@ -2033,25 +2060,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  118 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (192ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:681:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  119 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (retry #1) (180ms)
+  ✘  118 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (196ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:681:9
@@ -2069,25 +2078,10 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  120 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (retry #2) (182ms)
+  ✘  119 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (retry #1) (198ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:698:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  121 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (198ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:698:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:681:9
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
@@ -2102,7 +2096,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  122 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (retry #1) (186ms)
+  ✘  120 [chromium] › tests/example.spec.js:680:5 › PayPro Payment Systems (retry #2) (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:698:9
@@ -2120,7 +2114,43 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  123 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (retry #2) (195ms)
+  ✘  121 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (193ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:698:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  122 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (retry #1) (194ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:698:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
+[90m    at processImmediate (node:internal/timers:447:9)[39m
+[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  123 [chromium] › tests/example.spec.js:697:5 › PayPro Payment Fields (retry #2) (197ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:715:9
@@ -2138,7 +2168,22 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  124 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (186ms)
+  ✘  124 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (200ms)
+Login failed: Error: BASE_URL environment variable is not set
+    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:715:9
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
+    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
+    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
+    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
+    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
+    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
+    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
+  ✘  125 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (retry #1) (188ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:715:9
@@ -2156,25 +2201,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  125 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (retry #1) (185ms)
-Login failed: Error: BASE_URL environment variable is not set
-    at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:715:9
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:341:15
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:17
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
-    at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
-    at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
-    at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
-    at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
-    at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
-    at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  126 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (retry #2) (188ms)
+  ✘  126 [chromium] › tests/example.spec.js:714:5 › PayPro Key Transfer (retry #2) (190ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:732:9
@@ -2192,7 +2219,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  127 [chromium] › tests/example.spec.js:731:5 › Access (186ms)
+  ✘  127 [chromium] › tests/example.spec.js:731:5 › Access (201ms)
 Login failed: Error: BASE_URL environment variable is not set
     at login [90m(/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:8:13[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mtests/example.spec.js:732:9
@@ -2201,9 +2228,6 @@ Login failed: Error: BASE_URL environment variable is not set
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:64:34[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:34[90m)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:333:22
-[90m    at runNextTicks (node:internal/process/task_queues:60:5)[39m
-[90m    at processImmediate (node:internal/timers:447:9)[39m
-[90m    at process.callbackTrampoline (node:internal/async_hooks:128:17)[39m
     at [90m/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:294:11
     at TimeoutManager.withRunnable [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/timeoutManager.js:52:27[90m)[39m
     at TestInfoImpl._runAsStage [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/testInfo.js:292:7[90m)[39m
@@ -2228,7 +2252,7 @@ Login failed: Error: BASE_URL environment variable is not set
     at WorkerMain._runTest [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:283:5[90m)[39m
     at WorkerMain.runTestGroup [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/worker/workerMain.js:207:11[90m)[39m
     at process.<anonymous> [90m(/home/runner/work/DakeAuto/DakeAuto/[39mnode_modules/[4mplaywright[24m/lib/common/process.js:95:22[90m)[39m
-  ✘  129 [chromium] › tests/example.spec.js:731:5 › Access (retry #2) (184ms)
+  ✘  129 [chromium] › tests/example.spec.js:731:5 › Access (retry #2) (190ms)
 
 
   1) [chromium] › tests/example.spec.js:39:5 › Login ───────────────────────────────────────────────
